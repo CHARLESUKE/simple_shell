@@ -1,83 +1,83 @@
 #include "main.h"
 
 /**
- * append_err_s - prints an input string
- * @s: the error string to be printed
+ * append_err_s - engrave an input string
+ * @t: the mistake string to be engraved
  * Return: returns nothing (void)
  */
-void append_err_s(char *s)
+void append_err_s(char *t)
 {
-	int a = 0;
+	int b = 0;
 
-	if (!s || s == NULL)
+	if (!t || t == NULL)
 		return;
-	while (s[a] != '\0')
+	while (t[b] != '\0')
 	{
-		err_putchar(s[a]);
-		a++;
+		err_putchar(t[b]);
+		b++;
 	}
 }
 
 /**
- * err_putchar - writes the character c to stderr
- * @c: The character to print
- * Return: If successful (1) while if an error occurs,
- * (-1) is returned, and errno is set appropriately
+ * err_putchar - notes the character e to stderr
+ * @e: character to engrave
+ * Return: If successful (1) while if an error happens
+ * (-1) is returned, and errno is set properly
  */
 
-int err_putchar(char c)
+int err_putchar(char e)
 {
-	static int a;
-	static char buff[WRITE_BUF_SIZE];
+	static int b;
+	static char buffer[WRITE_BUF_SIZE];
 
-	if (c == BUF_FLUSH || a >= WRITE_BUF_SIZE)
+	if (e == BUF_FLUSH || b >= WRITE_BUF_SIZE)
 	{
-		write(2, buff, a);
-		a = 0;
+		write(2, buffer, b);
+		b = 0;
 	}
-	if (c != BUF_FLUSH)
-		buff[a++] = c;
+	if (e != BUF_FLUSH)
+		buffer[b++] = e;
 	return (1);
 }
 
 /**
- * fd_putc - writes the character to given file
- * @c: The printed character
- * @f_d: The filedescriptor to write to
- * Return: If successful (1), if there is an error (-1) is returned,
- * and errno is set appropriately
+ * fd_putc - notes the character to the specified file
+ * @e: The engraved character
+ * @file_d: filedescriptor to note down to
+ * Return: If successful (1), if an error occurs (-1) is returned,
+ * and errno is set accordinly
  */
 
-int fd_putc(char c, int f_d)
+int fd_putc(char e, int file_d)
 {
-	static int a;
-	static char buff[WRITE_BUF_SIZE];
+	static int b;
+	static char buffer[WRITE_BUF_SIZE];
 
-	if (c == BUF_FLUSH || a >= WRITE_BUF_SIZE)
+	if (e == BUF_FLUSH || b >= WRITE_BUF_SIZE)
 	{
-		write(f_d, buff, a);
-		a = 0;
+		write(file_d, buffer, b);
+		b = 0;
 	}
-	if (c != BUF_FLUSH)
-		buff[a++] = c;
+	if (e != BUF_FLUSH)
+		buffer[b++] = e;
 	return (1);
 }
 
 /**
- * fd_puts - prints an input string in the file descriptor
- * @s: the string to be printed
- * @f_d: the filedescriptor to write to
- * Return: returns the character inputted
+ * fd_puts - engraves an input string in the file descriptor
+ * @t: the string to be engraved
+ * @file_d: the filedescriptor to note to
+ * Return: returns the character inserted
  */
-int fd_puts(char *s, int f_d)
+int fd_puts(char *t, int file_d)
 {
-	int a = 0;
+	int b = 0;
 
-	if (!s)
+	if (!t)
 		return (0);
-	while (*s)
+	while (*t)
 	{
-		a += fd_putc(*s++, f_d);
+		b += fd_putc(*t++, file_d);
 	}
-	return (a);
+	return (b);
 }

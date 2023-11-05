@@ -163,22 +163,22 @@ char *char_dup(char *, int, int);
 char *find_full_path(cmd_d *, char *, char *);
 
 
-/* error functions */
+/* faults functions */
 void append_err_s(char *);
 int err_putchar(char);
-int fd_putc(char c, int fd);
-int fd_puts(char *str, int fd);
-int err_atoi(char *s);
-void print_err(cmd_d *, char *);
-int print_decimal(int entry, int f_d);
-char *convert_num(long int no, int base, int _flags);
-void rm_comments(char *buff);
+int fd_putc(char e, int fd);
+int fd_puts(char *stringtoconv, int fd);
+int err_atoi(char *t);
+void print_err(command_d *, char *);
+int print_decimal(int entering, int file_d);
+char *convert_num(long int numeral, int support, int myflags);
+void rm_comments(char *buffer);
 
 
 /* exit functions */
-char *string_char(char *ptr, char s);
-char *string_copy(char *dest, char *src, int n); /*Still working on it*/
-char *string_concat(char *dest, char *src, int n);
+char *string_char(char *prompt, char t);
+char *string_copy(char *destination, char *source, int m); /*Still working on it*/
+char *string_concat(char *destination, char *source, int m);
 
 /* free function(s) */
 int _free_ptr(void **);

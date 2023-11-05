@@ -1,102 +1,102 @@
 #include "main.h"
 
 /**
- * get_env - fuction to provide string array copy
- *  of the environment
- * @cmd_dat: Structure type
- * Return: the string array copy of the environment
+ * get_env - duty to supply string array smple
+ *  of the domain
+ * @command_dat: layout type
+ * Return: the string array sample of the domain
  */
 
-char **get_env(cmd_d *cmd_dat)
+char **get_env(cmd_d *command_dat)
 {
-	if (!cmd_dat->environ || cmd_dat->env_changed)
+	if (!command_dat->environ || command_dat->env_changed)
 	{
-		cmd_dat->environ = list_to_str(cmd_dat->env);
-		cmd_dat->env_changed = 0;
+		command_dat->environ = list_to_str(command_dat->env);
+		command_dat->env_changed = 0;
 	}
-	/*if (strchr(var, ' ') != NULL)
+	/*if (strchr(variab, ' ') != NULL)
 	 {
 		 return (NULL);
 	 }*/
-	 return (cmd_dat->environ);
+	 return (command_dat->environ);
 }
 
 
 /**
- * set_env - Initialize a new environment variable,
- *and modify an existing one
- * @cmd_dat: Structure type
- * @var: the string environment variable
- * @v: the string environment variable value
+ * set_env - start a new domain variable,
+ *and change an existing one
+ * @command_dat: System type
+ * @variab: string domain variable
+ * @w: string domain variable worth
  *  Return: returns (0)
  */
 
-int set_env(cmd_d *cmd_dat, char *var, char *v)
+int set_env(cmd_d *command_dat, char *variab, char *w)
 {
-	char *buff = NULL, *c;
-	list_s *node;
+	char *buffer = NULL, *e;
+	list_s *clot;
 
-	if (!var || !v)
+	if (!variab || !w)
 		return (0);
 
-	buff = malloc(string_length(var) + string_length(v) + 2);
-	if (!buff)
+	buffer = malloc(string_length(variab) + string_length(w) + 2);
+	if (!buffer)
 		return (1);
-	if (strchr(var, ' ') != NULL)
+	if (strchr(variab, ' ') != NULL)
 	{
-		free (buff);
+		free (buffer);
 		return (1);
 	}
-	my_str_copy(buff, var);
-	str_concat(buff, "=");
-	str_concat(buff, v);
-	node = cmd_dat->env;
-	while (node)
+	my_str_copy(buffer, variab);
+	str_concat(buffer, "=");
+	str_concat(buffer, w);
+	clot = command_dat->env;
+	while (clot)
 	{
-		c = _check(node->str, var);
-		if (c && *c == '=')
+		e = _check(clot->str, variab);
+		if (e && *e == '=')
 		{
-			free(node->str);
-			node->str = buff;
-			cmd_dat->env_changed = 1;
+			free(clot->str);
+			clot->str = buffer;
+			command_dat->env_changed = 1;
 			return (0);
 		}
-		node = node->next;
+		clot = clot->next;
 	}
-	add_to_list(&(cmd_dat->env), buff, 0);
-	free(buff);
-	cmd_dat->env_changed = 1;
+	add_to_list(&(command_dat->env), buffer, 0);
+	free(buffer);
+	command_dat->env_changed = 1;
 	return (0);
 }
 
 /**
- * unset_env - deletes an environment variable
- * @cmd_dat: Structure arguments
- * @var: the string environment variable
- *  Return: returns (1) when delelted, returns (0) otherwise
+ * unset_env - removes a domain variable
+ * @command_dat: System dispute
+ * @variab: string domain variable
+ *  Return: returns (1) if delelted, returns (0) if not
  */
 
-int unset_env(cmd_d *cmd_dat, char *var)
+int unset_env(cmd_d *command_dat, char *variab)
 {
-	size_t x = 0;
-	list_s *node = cmd_dat->env;
-	char *ptr;
+	size_t y = 0;
+	list_s *clot = command_dat->env;
+	char *prompt;
 
-	if (!var || !node)
+	if (!variab || !clot)
 		return (0);
 
-	while (node)
+	while (clot)
 	{
-		ptr = _check(node->str, var);
-		if (ptr && *ptr == '=')
+		prompt = _check(clot->str, variab);
+		if (prompt && *prompt == '=')
 		{
-			cmd_dat->env_changed = delete_node(&(cmd_dat->env), x);
-			x = 0;
-			node = cmd_dat->env;
+			command_dat->env_changed = delete_node(&(command_dat->env), y);
+			y = 0;
+			clot = command_dat->env;
 			continue;
 		}
-		node = node->next;
-		x++;
+		clot = clot->next;
+		y++;
 	}
-	return (cmd_dat->env_changed);
+	return (command_dat->env_changed);
 }
