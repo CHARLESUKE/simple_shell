@@ -55,14 +55,14 @@ int find_builtIn(cmd_d *cmd_dat)
 {
 	int a, ret_builtin = -1;
 	builtin_list bl[] = {
-		{"exit", exit_cmd},
+		{"exit",exit_cmd},
 		{"env", my_env},
 		{"help", help_cmd},
 		{"history", history_cmd},
 		{"setenv", set_environ},
 		{"unsetenv", unset_environ},
 		{"cd", cd_cmd},
-		{"alias", alias_cmd},
+		{"alias", cmd_alias},
 		{NULL, NULL}
 	};
 

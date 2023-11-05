@@ -1,108 +1,108 @@
 #include "main.h"
 
 /**
- * exit_cmd - exit command for the shell
- * @cmd_dat: structure
- * Return: (1) exits, returns (0) if cmd_dat.argv[0] != "exit".
+ * exit_cmd - exit order for shell
+ * @cmd_dat: construction
+ * Return: (1) ext, returns (0) if cmd_dat.argv[0] != "exit".
  */
-int exit_cmd(cmd_d *cmd_dat)
+int exit_cmd(cmd_d *command_dat)
 {
-	int e_check;
+	int a_scan;
 
-	if (cmd_dat->argv[1])
+	if (command_dat->argv[1])
 	{
-		e_check = err_atoi(cmd_dat->argv[1]);
-		if (e_check == -1)
+		a_scan = err_atoi(command_dat->argv[1]);
+		if (a_scan == -1)
 		{
-			cmd_dat->status = 2;
-			print_err(cmd_dat, "Incorrect number: ");
-			append_err_s(cmd_dat->argv[1]);
+			command_dat->status = 2;
+			print_err(command_dat, "Invalid number: ");
+			append_err_s(command_dat->argv[1]);
 			err_putchar('\n');
 			return (1);
 		}
-		cmd_dat->err_num = err_atoi(cmd_dat->argv[1]);
+		command_dat->err_num = err_atoi(command_dat->argv[1]);
 		return (-2);
 	}
-	cmd_dat->err_num = -1;
+	command_dat->err_num = -1;
 	return (-2);
 }
 
 /**
- * help_cmd - gives information on changed directories
- * @cmd_dat: Structure containing arguments
+ * help_cmd - gives you details on changed directories
+ * @cmd_dat: structiure holding disoute
  * Return: returns (0)
  */
 
-int help_cmd(cmd_d *cmd_dat)
+int help_cmd(cmd_d *command_dat)
 {
-	char **arg_arr;
+	char **ogg_rrr;
 
-	arg_arr = cmd_dat->argv;
-	append_S("Function does not exist \n");
+	ogg_rrr = command_dat->argv;
+	append_S("task do not exist \n");
 	if (0)
 	{
-		append_S(*arg_arr);
+		append_S(*ogg_rrr);
 	}
 	return (0);
 }
 
 
 /**
- * cd_cmd - changes directories
- * @cmd_dat: Structure containing potential arguments
+ * cd_cmd - swaps directories
+ * @cmd_dat: construction containing potential arguments
  * Return: returns (0)
  */
 
-int cd_cmd(cmd_d *cmd_dat)
+int cd_cmd(cmd_d *command_dat)
 {
-	char *c, *d; /* d stands for directory */
+	char *e, *f; /* f stands for directory */
 	char buff[1024];
-	int _chdir;
+	int chndir;
 
-	c = getcwd(buff, 1024);
-	if (!c)
-		append_S("TODO: >>getcwd failure emsg here<<\n");
-	if (!cmd_dat->argv[1])
+	e = getcwd(buff, 1024);
+	if (!e)
+		append_S("TODO: >>getcwd failed emsg spot<<\n");
+	if (!command_dat->argv[1])
 	{
-		d = _get_env(cmd_dat, "HOME=");
-		if (!d)
-			_chdir = chdir((d = _get_env(cmd_dat, "PWD=")) ? d : "/");
+		f = _get_env(command_dat, "HOME=");
+		if (!f)
+			chndir = chdir((f = _get_env(command_dat, "PWD=")) ? f : "/");
 		else
-			_chdir = chdir(d);
+			chndir = chdir(f);
 	}
-	else if (my_str_comp(cmd_dat->argv[1], "-") == 0)
+	else if (my_str_comp(command_dat->argv[1], "-") == 0)
 	{
-		if (!_get_env(cmd_dat, "OLDPWD="))
+		if (!_get_env(command_dat, "OLDPWD="))
 		{
-			append_S(c);
+			append_S(e);
 			_putchar('\n');
 			return (1);
 		}
-		append_S(_get_env(cmd_dat, "OLDPWD=")), _putchar('\n');
-		_chdir = chdir((d = _get_env(cmd_dat, "OLDPWD=")) ? d : "/");
+		append_S(_get_env(command_dat, "OLDPWD=")), _putchar('\n');
+		chndir = chdir((f = _get_env(command_dat, "OLDPWD=")) ? f : "/");
 	}
 	else
-		_chdir = chdir(cmd_dat->argv[1]);
-	if (_chdir == -1)
+		chndir = chdir(command_dat->argv[1]);
+	if (chndir == -1)
 	{
-		print_err(cmd_dat, "can't cd to ");
-		append_err_s(cmd_dat->argv[1]), err_putchar('\n');
+		print_err(command_dat, "cannot cd into ");
+		append_err_s(command_dat->argv[1]), err_putchar('\n');
 	}
 	else
 	{
-		set_env(cmd_dat, "OLDPWD", _get_env(cmd_dat, "PWD="));
-		set_env(cmd_dat, "PWD", getcwd(buff, 1024));
+		set_env(command_dat, "OLDPWD", _get_env(command_dat, "PWD="));
+		set_env(command_dat, "PWD", getcwd(buff, 1024));
 	}
 	return (0);
 }
 
 /**
- * history_cmd - displays the history list
- * @cmd_dat: Structure
+ * history_cmd - lists the recorded list
+ * @cmd_dat: system
  *  Return: returns (0)
  */
-int history_cmd(cmd_d *cmd_dat)
+int history_cmd(cmd_d *command_dat)
 {
-	prints_element(cmd_dat->history);
+	prints_element(command_dat->history);
 	return (0);
 }

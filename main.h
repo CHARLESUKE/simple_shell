@@ -186,21 +186,21 @@ int _free_ptr(void **);
 /* interactive shell function(s) */
 int interactive_shell(cmd_d *);
 
-/* _atoi functions */
+/* atoi functions */
 int _atoi(char *str);
-int is_alpha(int c);
+int alpha_is(int c);
 int is_delimeter(char c, char *d);
 
-/* alias function(s) */
-int _set_alias(cmd_d *, char *str);
-int _unset_alias(cmd_d *, char *str);
-int a_print(list_s *_node);
-int alias_cmd(cmd_d *);
+/* aka function(s) */
+int alias_set(cmd_d *, char *str);
+int alias_unset(cmd_d *, char *str);
+int print_a(list_s *_node);
+int cmd_alias(cmd_d *);
 
 /* token function(s) */
 char **token(char *str, char *delim);
 
-/* built in command function */
+/* built_command function */
 int exit_cmd(cmd_d *);
 int history_cmd(cmd_d *);
 int help_cmd(cmd_d *);
@@ -239,10 +239,10 @@ ssize_t read_buf(cmd_d *, char *buf, size_t *);
 ssize_t _input(cmd_d *);
 void signalHandler(int);
 
-/* command data functions */
-void set_cmd(cmd_d *, char **av);
+/* command_data functions */
+void set_cmd(cmd_d *, char **avv);
 void clear_cmd(cmd_d *);
-void free_cmd(cmd_d *, int t);
+void free_cmd(cmd_d *, int u);
 
 /* linked list functions */
 list_s *add_node(list_s **, const char *, int);

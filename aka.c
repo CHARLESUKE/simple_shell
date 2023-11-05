@@ -1,68 +1,68 @@
 #include "main.h"
 
 /**
- * _set_alias - sets alias to accept string input
- * @cmd_dat: strucyture type
- * @str: the string alias
- * Return: always return (0) if successful and (1) if
- * there's an error
+ * alias_set - puts alias to take string input
+ * @cmd_dat: construction type
+ * @str: string alias
+ * Return: always return (0) if success and (1) if
+ * there is a failure
  */
 
-int _set_alias(cmd_d *cmd_dat, char *str)
+int alias_set(cmd_d *cmd_dat, char *str)
 {
-	char *ptr;
+	char *prompt;
 
-	ptr = string_char(str, '=');
-	if (!ptr)
+	prompt = string_char(str, '=');
+	if (!prompt)
 		return (1);
-	if (!*++ptr)
-		return (_unset_alias(cmd_dat, str));
+	if (!*++prompt)
+		return (alias_unset(cmd_dat, str));
 
-	_unset_alias(cmd_dat, str);
+	alias_unset(cmd_dat, str);
 	return (add_to_list(&(cmd_dat->alias), str, 0) == NULL);
 }
 
 /**
- * _unset_alias - removes alisas command
- * @cmd_dat: structure type
- * @str: the string alias
- * Return: returns (0) if successful and (1) if unsuccessful
+ * alias_unset - deletes alisas order
+ * @cmd_dat: construction type
+ * @str: the string aka
+ * Return: returns (0) if success and (1) if failure
  */
-int _unset_alias(cmd_d *cmd_dat, char *str)
+int alias_unset(cmd_d *cmd_dat, char *str)
 {
-	char *ptr;
-	char a;
-	int res;
+	char *prompt;
+	char b;
+	int rest;
 
-	ptr = string_char(str, '=');
-	if (!ptr)
+	prompt = string_char(str, '=');
+	if (!prompt)
 		return (1);
-	a = *ptr;
-	*ptr = 0;
-	res = delete_node(&(cmd_dat->alias),
+	b = *prompt;
+	*prompt = 0;
+	rest = delete_node(&(cmd_dat->alias),
 		node_index(cmd_dat->alias, start_node(cmd_dat->alias, str, -1)));
-	*ptr = a;
-	return (res);
+	*prompt = b;
+	return (rest);
 }
 
 
 /**
- * a_print - function toprints an alias string
- * @_node: the alias node
- * Return: returns (0) if successful and (1) if not
+ * print_a - performance to imprints an alias string
+ * @_clot: alias node
+ * Return: returns (0) if success and (1) if failure
  */
-int a_print(list_s *_node)
+int print_a(list_s *_clot)
 {
-	char *ptr = NULL;
-	char *a = NULL;
+	char *prompt = NULL;
+	char *b = NULL;
 
-	if (_node)
+	if (_clot)
 	{
-		ptr = string_char(_node->str, '=');
-		for (a = _node->str; a <= ptr; a++)
-			_putchar(*a);
+		prompt = string_char(_clot->str, '=');
+		for (b = _clot->str; b <= prompt; b++)
+			_putchar(*b);
 		_putchar('\'');
-		append_S(ptr + 1);
+		append_S(prompt + 1);
 		append_S("'\n");
 		return (0);
 	}
@@ -70,33 +70,33 @@ int a_print(list_s *_node)
 }
 
 /**
- * alias_cmd - mimics the alias command
- * @cmd_dat: Structure type
- *  Return: returns (0)
+ * cmd_alias - impersonate the alias order
+ * @cmd_dat: construction type
+ *  Return: return (0)
  */
-int alias_cmd(cmd_d *cmd_dat)
+int cmd_alias(cmd_d *cmd_dat)
 {
-	int a = 0;
-	char *ptr = NULL;
-	list_s *node = NULL;
+	int b = 0;
+	char *prompt = NULL;
+	list_s *clot = NULL;
 
 	if (cmd_dat->argc == 1)
 	{
-		node = cmd_dat->alias;
-		while (node)
+		clot = cmd_dat->alias;
+		while (clot)
 		{
-			a_print(node);
-			node = node->next;
+			print_a(clot);
+			clot = clot->next;
 		}
 		return (0);
 	}
-	for (a = 1; cmd_dat->argv[a]; a++)
+	for (b = 1; cmd_dat->argv[b]; b++)
 	{
-		ptr = string_char(cmd_dat->argv[a], '=');
-		if (ptr)
-			_set_alias(cmd_dat, cmd_dat->argv[a]);
+		prompt = string_char(cmd_dat->argv[b], '=');
+		if (prompt)
+			alias_set(cmd_dat, cmd_dat->argv[b]);
 		else
-			a_print(start_node(cmd_dat->alias, cmd_dat->argv[a], '='));
+			print_a(start_node(cmd_dat->alias, cmd_dat->argv[b], '='));
 	}
 
 	return (0);

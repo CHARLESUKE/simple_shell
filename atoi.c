@@ -1,49 +1,49 @@
 /**
- * _atoi - converts the initial portion of the string pointed to a integer
- * @str: the string to be converted
- * Return: returns (0) if numbers in string or a set of
- * converted number
+ * atoi - change the starting part of the string aimed to a integer
+ * @str: the string impending changed
+ * Return: returns (0) if nueral in string or a set of
+ * changed numeral
  */
 
-int _atoi(char *str)
+int atoi(char *str)
 {
-	int a, product;
-	int sign = 1, flag = 0;
-	unsigned int res = 0;
+	int b, result;
+	int signal = 1, banner = 0;
+	unsigned int rest = 0;
 
-	for (a = 0; str[a] != '\0' && flag != 2; a++)
+	for (b = 0; str[b] != '\0' && banner != 2; b++)
 	{
-		if (str[a] == '-')
-			sign *= -1;
+		if (str[b] == '-')
+			signal *= -1;
 
-		if (str[a] >= '0' && str[a] <= '9')
+		if (str[b] >= '0' && str[b] <= '9')
 		{
-			flag = 1;
-			res *= 10;
-			res += (str[a] - '0');
+			banner = 1;
+			rest *= 10;
+			rest += (str[b] - '0');
 		}
-		else if (flag == 1)
-			flag = 2;
+		else if (banner == 1)
+			banner = 2;
 	}
 
-	if (sign == -1)
-		product = -res;
+	if (signal == -1)
+		result = -rest;
 	else
-		product = res;
+		result = rest;
 
-	return (product);
+	return (result);
 }
 
 
 /**
- * is_alpha - checks for alphabet
- * @c: the input character
- * Return: returns (1) if true and (0) if not
+ * alpha_is - examine for alphabetum
+ * @e: the intake character
+ * Return: returns (1) if true and (0) if false
  */
 
-int is_alpha(int c)
+int alpha_is(int e)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+	if ((e >= 'a' && e <= 'z') || (e >= 'A' && e <= 'Z'))
 		return (1);
 	else
 		return (0);
@@ -52,14 +52,14 @@ int is_alpha(int c)
 
 /**
  * is_delimeter - checks if character is a delimeter
- * @c: the character to check
- * @d: the delimeter
- * Return: returns (1) there is a delimeter, (0) if false
+ * @e: character to examine
+ * @f: the delimeter
+ * Return: returns (1) if there is a delimeter, (0) if false
  */
-int is_delimeter(char c, char *d)
+int is_delimeter(char e, char *f)
 {
-	while (*d)
-		if (*d++ == c)
+	while (*f)
+		if (*f++ == e)
 			return (1);
 	return (0);
 }
