@@ -1,91 +1,91 @@
 #include "main.h"
 
 /**
- * my_getline - reads an entire line from stream from STDIN, An alternative
+ *my_getline - reads the whole line from stream from STDIN, Another alternative
  * to (geline) function
- * @cmd_dat: struct parameter
- * @ptr: address to the pointer to buffer
- * @len: preallocated ptr buffer size
- * Return: size of preallocated size
+ * @command_dat: structure parameter
+ * @prompt: address to the a pointer to a buffer
+ * @buff_length: pre allocated pointer buffersize
+ * Return: size of pre allocated size
  */
-int my_getline(cmd_d *cmd_dat, char **ptr, size_t *len)
+int my_getline(cmd_d *command_dat, char **prompt, size_t *buff_length)
 {
-	static char buf[READ_BUF_SIZE];
-	static size_t i, l;
-	size_t j;
-	ssize_t k = 0, s = 0;
-	char *p = NULL, *new_ptr = NULL;
-	char *c;
+	static char buffon[READ_BUF_SIZE];
+	static size_t j, o;
+	size_t k;
+	ssize_t l = 0, t = 0;
+	char *q = NULL, *brandnew_pointer = NULL;
+	char *e;
 
-	p = *ptr;
-	if (p && len)
-		s = *len;
-	if (i == l)
-		i = l = 0;
+	q = *prompt;
+	if (q && buff_length)
+		t = *buff_length;
+	if (j == o)
+		j = o = 0;
 
-	k = read_buf(cmd_dat, buf, &l);
-	if (k == -1 || (k == 0 && l == 0))
+	l = read_buf(command_dat, buffon, &o);
+	if (l == -1 || (l == 0 && o == 0))
 		return (-1);
 
-	c = string_char(buf + i, '\n');
-	j = c ? 1 + (unsigned int)(c - buf) : l;
-	new_ptr = my_realloc(p, s, s ? s + j : j + 1);
-	if (!new_ptr) /* MALLOC FAILURE! */
-		return (p ? free(p), -1 : -1);
+	e = string_char(buffon + j, '\n');
+	k = e ? 1 + (unsigned int)(e - buffon) : o;
+	brandnew_pointer = my_realloc(q, t, t ? t + k : k + 1);
+	if (!brandnew_pointer) /* MALLOCC FAILS! */
+		return (q ? free(q), -1 : -1);
 
-	if (s)
-		string_concat(new_ptr, buf + i, j - i);
+	if (t)
+		string_concat(brandnew_pointer, buffon + j, k - j);
 	else
-		string_copy(new_ptr, buf + i, j - i + 1);
+		string_copy(brandnew_pointer, buffon + j, k - j + 1);
 
-	s += j - i;
-	i = j;
-	p = new_ptr;
+	t += k - j;
+	j = k;
+	q = brandnew_pointer;
 
-	if (len)
-		*len = s;
-	*ptr = p;
-	return (s);
+	if (buff_length)
+		*buff_length = t;
+	*prompt = q;
+	return (t);
 }
 
 
 /**
- * input_buffer - buffers chained commands
- * @cmd_dat: structure type
- * @buf:  pointer to the buffer
- * @len: address of length variable
+ * input_buffer - buffers bonds orders
+ * @command_dat: construction type
+ * @buffon:  pointer to buffer
+ * @buff_length: address of length variab
  * Return: bytes read
  */
-ssize_t input_buffer(cmd_d *cmd_dat, char **buf, size_t *len)
+ssize_t input_buffer(cmd_d *command_dat, char **buffon, size_t *buff_length)
 {
-	ssize_t s = 0;
+	ssize_t t = 0;
 	size_t len_t = 0;
 
-	if (!*len) /* if empty, fill it */
+	if (!*buff_length) /* if its empty, should fill it */
 	{
-		free(*buf);
-		*buf = NULL;
+		free(*buffon);
+		*buffon = NULL;
 		signal(SIGINT, signalHandler);
 #if USE_GETLINE
-		s = getline(buf, &len_t, stdin);
+		t = getline(buffon, &len_t, stdin);
 #else
-		s = my_getline(cmd_dat, buf, &len_t);
+		t = my_getline(command_dat, buffon, &len_t);
 #endif
-		if (s > 0)
+		if (t > 0)
 		{
-			if ((*buf)[s - 1] == '\n')
+			if ((*buffon)[t - 1] == '\n')
 			{
-				(*buf)[s - 1] = '\0';
-				s--;
+				(*buffon)[t - 1] = '\0';
+				t--;
 			}
-			cmd_dat->linecount_flag = 1;
-			rm_comments(*buf);
-			build_history(cmd_dat, *buf, cmd_dat->histcount++);
+			command_dat->linecount_flag = 1;
+			rm_comments(*buffon);
+			build_history(command_dat, *buffon, command_dat->histcount++);
 			{
-				*len = s;
-				cmd_dat->cmd_buf = buf;
+				*buff_length = t;
+				command_dat->cmd_buf = buffon;
 			}
 		}
 	}
-	return (s);
-}	
+	return (t);
+}

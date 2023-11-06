@@ -150,7 +150,7 @@ char *_check(const char *haystack, const char *needle);
 
 
 /*fork function(s)*/
-void fork_c(cmd_d *cmd_dat);
+void fork_c(cmd_d *command_dat);
 
 /* simple shell loop functions */
 int shell(cmd_d *, char **);
@@ -232,10 +232,10 @@ int build_history(cmd_d *, char *buf, int line_count);
 int number_history(cmd_d *);
 
 
-/* getline functions (my getline functions) */
+/* getline functions (getline functions) */
 int my_getline(cmd_d *, char **, size_t *);
-ssize_t input_buffer(cmd_d *, char **buf, size_t *);
-ssize_t read_buf(cmd_d *, char *buf, size_t *);
+ssize_t input_buffer(cmd_d *, char **buffon, size_t *);
+ssize_t read_buf(cmd_d *, char *buffon, size_t *);
 ssize_t _input(cmd_d *);
 void signalHandler(int);
 

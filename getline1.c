@@ -2,66 +2,66 @@
 
 
 /**
- * _input - gets a line minus the newline
- * @cmd_dat: structure type
- * Return: number of bytes read
+ * _input - recieves a line minus the newline
+ * @command_dat: anatomy type
+ * Return: the number of bytes studied
  */
 
-ssize_t _input(cmd_d *cmd_dat)
+ssize_t _input(cmd_d *command_dat)
 {
-	static size_t i, j;
-	static size_t l;
-	ssize_t s = 0;
-	char **buf_ptr = &(cmd_dat->arg), *p;
-	static char *buf;
+	static size_t j, k;
+	static size_t o;
+	ssize_t t = 0;
+	char **buffer_pointer = &(command_dat->arg), *q;
+	static char *buffon;
 
 	_putchar(BUF_FLUSH);
-	s = input_buffer(cmd_dat, &buf, &l);
-	if (s == -1) /* End of file */
+	t = input_buffer(command_dat, &buffon, &o);
+	if (t == -1) /* Ends of the file */
 		return (-1);
-	if (l)
+	if (o)
 	{
-		j = i; /* itertor */
-		p = buf + i;
+		k = j; /*h itertor */
+		q = buffon + j;
 
-		chain_check(cmd_dat, buf, &j, i, l);
-		while (j < l) /* iterate till a semicolon or end */
+		chain_check(command_dat, buffon, &k, j, o);
+		while (k < o) /* iterate untill hit a semicolon or end(finish) */
 		{
-			if (is_Chain(cmd_dat, buf, &j))
+			if (is_Chain(command_dat, buffon, &k))
 				break;
-			j++;
+			k++;
 		}
 
-		i = j + 1;
-		if (i >= l)
+		j = k + 1;
+		if (j >= o)
 		{
-			i = l = 0; /* reset position and length */
-			cmd_dat->cmd_buf_type = CMD_NORM;
+			j = o = 0; /* should reset the position and also the length */
+			command_dat->cmd_buf_type = CMD_NORM;
 		}
 
-		*buf_ptr = p;
-		return (string_length(p));
+		*buffer_pointer = q;
+		return (string_length(q));
 	}
 
-	*buf_ptr = buf;
-	return (s); /* return length */
+	*buffer_pointer = buffon;
+	return (t); /* should return length */
 }
 
 /**
- * read_buf - reads an input buffer
- * @cmd_dat: structure type
- * @buf: buffer
- * @s: size of buffer
- * Return: (i)
+ * read_buf - this reads (the)an input buffer
+ * @command_dat: anatomy type
+ * @buffon: buffer
+ * @t: thats the total size of buffer
+ * Return: (j)
  */
-ssize_t read_buf(cmd_d *cmd_dat, char *buf, size_t *s)
+ssize_t read_buf(cmd_d *command_dat, char *buffon, size_t *t)
 {
-	ssize_t i = 0;
+	ssize_t j = 0;
 
-	if (*s)
+	if (*t)
 		return (0);
-	i = read(cmd_dat->readfd, buf, READ_BUF_SIZE);
-	if (i >= 0)
-		*s = i;
-	return (i);
+	j = read(command_dat->readfd, buffon, READ_BUF_SIZE);
+	if (j >= 0)
+		*t = j;
+	return (j);
 }

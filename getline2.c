@@ -2,10 +2,10 @@
 
 
 /**
- * signalHandler - blocks ctrl-C from exiting and display
- * a new prompt
- * @sig_num: signal number
- * Return: returns nothing (void)
+ * signalHandler - blocks and stops ctrl-C from exiting showing and displaying
+ * a practically new prompt
+ * @sig_num: this is signal number
+ * Return: returns absolutely nothing (void)
  */
 
 void signalHandler(__attribute__((unused))int sig_num)

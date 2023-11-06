@@ -1,25 +1,25 @@
 #include "main.h"
 
 /**
- * fork_c - forks a an exec to run command
- * @cmd_dat: the parameter
+ * fork_c - fork is an exec to run orders
+ * @command_dat: is the parameter
  * Return: nothing (void)
  */
-void fork_c(cmd_d *cmd_dat)
+void fork_c(cmd_d *command_dat)
 {
-	pid_t child_pid;
+	pid_t childprocessid;
 
-	child_pid = fork();
-	if (child_pid == -1)
+	childprocessid = fork();
+	if (childprocessid == -1)
 	{
 		perror("Error:");
 		return;
 	}
-	if (child_pid == 0)
+	if (childprocessid == 0)
 	{
-		if (execve(cmd_dat->path, cmd_dat->argv, get_env(cmd_dat)) == -1)
+		if (execve(command_dat->path, command_dat->argv, get_env(command_dat)) == -1)
 		{
-			free_cmd(cmd_dat, 1);
+			free_cmd(command_dat, 1);
 			if (errno == EACCES)
 				exit(126);
 			exit(1);
@@ -27,12 +27,12 @@ void fork_c(cmd_d *cmd_dat)
 	}
 	else
 	{
-		wait(&(cmd_dat->status));
-		if (WIFEXITED(cmd_dat->status))
+		wait(&(command_dat->status));
+		if (WIFEXITED(command_dat->status))
 		{
-			cmd_dat->status = WEXITSTATUS(cmd_dat->status);
-			if (cmd_dat->status == 126)
-				print_err(cmd_dat, "Permission not granted\n");
+			command_dat->status = WEXITSTATUS(command_dat->status);
+			if (command_dat->status == 126)
+				print_err(command_dat, "Permission denied\n");
 		}
 	}
 }
