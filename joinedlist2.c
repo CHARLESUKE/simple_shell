@@ -2,25 +2,25 @@
 
 
 /**
- * free_list - frees the list
- * @h_ptr: pointer to address of head node
- * Return: returns nothing (void)
+ * free_list - this function works to free the list
+ * @highpointer: this variab job is the pointer to address of head node
+ * Return: should returns nothing (void)
  */
 
-void free_list(list_s **h_ptr)
+void free_list(list_s **highpointer)
 {
-	list_s *h, *next, *node;
+	list_s *i, *next, *clot;
 
-	if (!h_ptr || !*h_ptr)
+	if (!highpointer || !*highpointer)
 		return;
-	h = *h_ptr;
-	node = h;
-	while (node)
+	i = *highpointer;
+	clot = i;
+	while (clot)
 	{
-		next = node->next;
-		free(node->str);
-		free(node);
-		node = next;
+		next = clot->next;
+		free(clot->str);
+		free(clot);
+		clot = next;
 	}
-	*h_ptr = NULL;
+	*highpointer = NULL;
 }

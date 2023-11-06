@@ -2,61 +2,61 @@
 
 
 /**
- * print_list_string - prints only the string element of the list
- * @ptr : pointer to the first node
- * Return: returns the size of linked list
+ * print_list_string - this function emprints only string element of the list
+ * @prompt : this variab pointer to first node
+ * Return: should returns size of linked list
  */
 
-size_t print_list_string(const list_s *ptr)
+size_t print_list_string(const list_s *prompt)
 {
-	size_t s = 0;
+	size_t t = 0;
 
-	while (ptr)
+	while (prompt)
 	{
-		append_S(ptr->str ? ptr->str : "(nil)");
+		append_S(prompt->str ? prompt->str : "(nil)");
 		append_S("\n");
-		ptr = ptr->next;
-		s++;
+		prompt = prompt->next;
+		t++;
 	}
-	return (s);
+	return (t);
 }
 
 /**
- * delete_node - deletes node at an index
- * @h: address of pointer to first node
- * @i: index of node to delete
- * Return: returns (1) if deleted and (0) if not
+ * delete_node - this function deletes node at an index
+ * @i: this variab address of pointer to first node
+ * @j: this variab is index of node to delete
+ * Return: should return (1) if deleted and (0) if not deleted
  */
 
-int delete_node(list_s **h, unsigned int i)
+int delete_node(list_s **i, unsigned int j)
 {
-	list_s *prev, *node;
-	unsigned int n = 0;
+	list_s *previousclot, *clot;
+	unsigned int m = 0;
 
-	if (!h || !*h)
+	if (!i || !*i)
 		return (0);
 
-	if (!i)
+	if (!j)
 	{
-		node = *h;
-		*h = (*h)->next;
-		free(node->str);
-		free(node);
+		clot = *i;
+		*i = (*i)->next;
+		free(clot->str);
+		free(clot);
 		return (1);
 	}
-	node = *h;
-	while (node)
+	clot = *i;
+	while (clot)
 	{
-		if (n == i)
+		if (m == j)
 		{
-			prev->next = node->next;
-			free(node->str);
-			free(node);
+			previousclot->next = clot->next;
+			free(clot->str);
+			free(clot);
 			return (1);
 		}
-		n++;
-		prev = node;
-		node = node->next;
+		m++;
+		previousclot = clot;
+		clot = clot->next;
 	}
 	return (0);
 }

@@ -244,7 +244,7 @@ void set_cmd(cmd_d *, char **avv);
 void clear_cmd(cmd_d *);
 void free_cmd(cmd_d *, int u);
 
-/* linked list functions */
+/* joined list functions */
 list_s *add_node(list_s **, const char *, int);
 list_s *add_to_list(list_s **, const char *, int);
 size_t print_list_string(const list_s *);
