@@ -1,56 +1,56 @@
 #include "main.h"
 
 /**
- * list_length - determines length of linked list
- * @ptr: pointer to first node
- * Return: returns the size of linked list
+ * list_length - this decides the length of the linked list
+ * @prompt: this is pointer to the actual first node
+ * Return: should return the size of the linked list
  */
-size_t list_length(const list_s *ptr)
+size_t list_length(const list_s *prompt)
 {
-	size_t s = 0;
+	size_t t = 0;
 
-	while (ptr)
+	while (prompt)
 	{
-		ptr = ptr->next;
-		s++;
+		prompt = prompt->next;
+		t++;
 	}
-	return (s);
+	return (t);
 }
 
 /**
- * list_to_str - array of strings is returned
- * @h: pointer to head node
- * Return: returns an array of strings
+ * list_to_str - the array of the strings is brought back
+ * @i: the pointer to the head(beginning) node
+ * Return: should return an array of the strings
  */
 
-char **list_to_str(list_s *h)
+char **list_to_str(list_s *i)
 {
-	list_s *node = h;
-	size_t l = list_length(h);
-	size_t i;
-	char **string;
-	char *str;
+	list_s *clot = i;
+	size_t o = list_length(i);
+	size_t j;
+	char **stringofarray;
+	char *stringlisting;
 
-	if (!h || !l)
+	if (!i || !o)
 		return (NULL);
-	string = malloc(sizeof(char *) * (l + 1));
-	if (!string)
+	stringofarray = malloc(sizeof(char *) * (o + 1));
+	if (!stringofarray)
 		return (NULL);
-	for (l = 0; node; node = node->next, l++)
+	for (o = 0; clot; clot = clot->next, o++)
 	{
-		str = malloc(string_length(node->str) + 1);
-		if (!str)
+		stringlisting = malloc(string_length(clot->str) + 1);
+		if (!stringlisting)
 		{
-			for (i = 0; i < l; i++)
-				free(string[i]);
-			free(string);
+			for (j = 0; j < o; j++)
+				free(stringofarray[j]);
+			free(stringofarray);
 			return (NULL);
 		}
 
-		str = my_str_copy(str, node->str);
-		string[l] = str;
+		stringlisting = my_str_copy(stringlisting, clot->str);
+		stringofarray[o] = stringlisting;
 	}
-	string[l] = NULL;
-	return (string);
+	stringofarray[o] = NULL;
+	return (stringofarray);
 }
 

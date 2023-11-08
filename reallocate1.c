@@ -1,38 +1,38 @@
 #include "main.h"
 
 /**
- * my_realloc - (my alternative for realloc) reallocates a block of memory
- * @ptr: pointer to previous allocated block
- * @old: byte size of previous block
- * @new: byte size of new block
- * Return: address to previous memory block
+ * my_realloc - its my alterna 4 realloc dis func reallocates a block of d mem
+ * @prompt:this is the pointer to the previous allocated block
+ * @oldblocksize: this is the byte size of the previous block
+ * @newbar: this is the byte size of the new block size
+ * Return: should return the address to the previous memory block
  */
-void *my_realloc(void *ptr, unsigned int old, unsigned int new)
+void *my_realloc(void *prompt, unsigned int oldblocksize, unsigned int newbar)
 {
-	char *m;
+	char *n;
 
-	if (!ptr)
-		return (malloc(new));
-	if (!new)
-		return (free(ptr), NULL);
-	if (new == old)
-		return (ptr);
+	if (!prompt)
+		return (malloc(newbar));
+	if (!newbar)
+		return (free(prompt), NULL);
+	if (newbar == oldblocksize)
+		return (prompt);
 
-	m = malloc(new);
-	if (!m)
+	n = malloc(newbar);
+	if (!n)
 		return (NULL);
 
-	if (old < new)
+	if (oldblocksize < newbar)
 	{
-		old = old;
+		oldblocksize = oldblocksize;
 	}
 	else
 	{
-		old = new;
+		oldblocksize = newbar;
 	}
 
-	while (old--)
-		m[old] = ((char *)ptr)[old];
-	free(ptr);
-	return (m);
+	while (oldblocksize--)
+		n[oldblocksize] = ((char *)prompt)[oldblocksize];
+	free(prompt);
+	return (n);
 }

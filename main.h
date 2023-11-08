@@ -206,7 +206,7 @@ int history_cmd(cmd_d *);
 int help_cmd(cmd_d *);
 int cd_cmd(cmd_d *);
 
-/* memory allocation functions (realloc) */
+/* the memory reallocation functions (reallocation) */
 char *memory_set(char *, char, unsigned int);
 void str_free(char **);
 void *my_realloc(void *, unsigned int, unsigned int);
@@ -224,11 +224,11 @@ int set_environ(cmd_d *);
 int unset_environ(cmd_d *);
 int populate_env(cmd_d *);
 
-/* history functions */
+/* record functions */
 char *history_file(cmd_d *);
 int rd_history(cmd_d *);
 int write_history(cmd_d *);
-int build_history(cmd_d *, char *buf, int line_count);
+int build_history(cmd_d *, char *buffon, int line_count);
 int number_history(cmd_d *);
 
 
@@ -253,7 +253,7 @@ void free_list(list_s **);
 size_t list_length(const list_s *);
 char **list_to_str(list_s *);
 size_t prints_element(const list_s *);
-list_s *start_node(list_s *, char *, char c);
+list_s *start_node(list_s *, char *, char e);
 ssize_t node_index(list_s *, list_s *);
 
 /* variables functions */

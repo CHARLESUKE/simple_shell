@@ -1,145 +1,145 @@
 #include "main.h"
 
 /**
- * history_file - gets the history file
- * @cmd_dat: structure type
- * Return: returns history file
+ * history_file - this function gets the (record)history file
+ * @command_dat: this is the structure(system) type
+ * Return: this should return the history file
  */
 
-char *history_file(cmd_d *cmd_dat)
+char *history_file(cmd_d *command_dat)
 {
-	char *buf, *_dir;
+	char *buffon, *_direct;
 
-	_dir = _get_env(cmd_dat, "HOME=");
-	if (!_dir)
+	_direct = _get_env(command_dat, "HOME=");
+	if (!_direct)
 		return (NULL);
-	buf = malloc((string_length(_dir) + string_length(HIST_FILE) + 2) *
+	buffon = malloc((string_length(_direct) + string_length(HIST_FILE) + 2) *
 			sizeof(char));
-	if (!buf)
+	if (!buffon)
 		return (NULL);
-	buf[0] = 0;
-	my_str_copy(buf, _dir);
-	str_concat(buf, "/");
-	str_concat(buf, HIST_FILE);
-	return (buf);
+	buffon[0] = 0;
+	my_str_copy(buffon, _direct);
+	str_concat(buffon, "/");
+	str_concat(buffon, HIST_FILE);
+	return (buffon);
 }
 
 
 
 /**
- * rd_history - reads history from file
- * @cmd_dat: structure type
- * Return: returns history_count if successful and (0) if not
+ * rd_history - this function reads the history from the file
+ * @command_dat: this is the structure(style) type
+ * Return: this should return history_count if successful & (0) if not succ
  */
 
-int rd_history(cmd_d *cmd_dat)
+int rd_history(cmd_d *command_dat)
 {
-	int a, l = 0, line_count = 0;
-	ssize_t f_desc, read_len, f_size = 0;
+	int b, o = 0, line_count = 0;
+	ssize_t recfile_description, read_len, recfile_size = 0;
 	struct stat st;
-	char *buf = NULL, *file_name = history_file(cmd_dat);
+	char *buffon = NULL, *recordfile_name = history_file(command_dat);
 
-	if (!file_name)
+	if (!recordfile_name)
 		return (0);
 
-	f_desc = open(file_name, O_RDONLY);
-	free(file_name);
-	if (f_desc == -1)
+	recfile_description = open(recordfile_name, O_RDONLY);
+	free(recordfile_name);
+	if (recfile_description == -1)
 		return (0);
-	if (!fstat(f_desc, &st))
-		f_size = st.st_size;
-	if (f_size < 2)
+	if (!fstat(recfile_description, &st))
+		recfile_size = st.st_size;
+	if (recfile_size < 2)
 		return (0);
-	buf = malloc(sizeof(char) * (f_size + 1));
-	if (!buf)
+	buffon = malloc(sizeof(char) * (recfile_size + 1));
+	if (!buffon)
 		return (0);
-	read_len = read(f_desc, buf, f_size);
-	buf[f_size] = 0;
+	read_len = read(recfile_description, buffon, recfile_size);
+	buffon[recfile_size] = 0;
 	if (read_len <= 0)
-		return (free(buf), 0);
-	close(f_desc);
-	for (a = 0; a < f_size; a++)
-		if (buf[a] == '\n')
+		return (free(buffon), 0);
+	close(recfile_description);
+	for (b = 0; b < recfile_size; b++)
+		if (buffon[b] == '\n')
 		{
-			buf[a] = 0;
-			build_history(cmd_dat, buf + l, line_count++);
-			l = a + 1;
+			buffon[b] = 0;
+			build_history(command_dat, buffon + o, line_count++);
+			o = b + 1;
 		}
-	if (l != a)
-		build_history(cmd_dat, buf + l, line_count++);
-	free(buf);
-	cmd_dat->histcount = line_count;
-	while (cmd_dat->histcount-- >= HIST_MAX)
-		delete_node(&(cmd_dat->history), 0);
-	number_history(cmd_dat);
-	return (cmd_dat->histcount);
+	if (o != b)
+		build_history(command_dat, buffon + o, line_count++);
+	free(buffon);
+	command_dat->histcount = line_count;
+	while (command_dat->histcount-- >= HIST_MAX)
+		delete_node(&(command_dat->history), 0);
+	number_history(command_dat);
+	return (command_dat->histcount);
 }
 
 /**
- * write_history - creates a new file, or makes changes to an existing file
- * @cmd_dat: structure type
- * Return: returns (1) if successful and (-1) if not
+ * write_history - dis function buids a new file,or do chan to an existing file
+ * @command_dat: this is the structure(system) type
+ * Return: this should returns (1) if its successful and (-1) if its not
  */
-int write_history(cmd_d *cmd_dat)
+int write_history(cmd_d *command_dat)
 {
-	char *f_name = history_file(cmd_dat);
-	ssize_t f_desc;
-	list_s *node = NULL;
+	char *thef_name = history_file(command_dat);
+	ssize_t recfile_description;
+	list_s *clot = NULL;
 
-	if (!f_name)
+	if (!thef_name)
 		return (-1);
 
-	f_desc = open(f_name, O_CREAT | O_TRUNC | O_RDWR, 0644);
-	free(f_name);
-	if (f_desc == -1)
+	recfile_description = open(thef_name, O_CREAT | O_TRUNC | O_RDWR, 0644);
+	free(thef_name);
+	if (recfile_description == -1)
 		return (-1);
-	for (node = cmd_dat->history; node; node = node->next)
+	for (clot = command_dat->history; clot; clot = clot->next)
 	{
-		fd_puts(node->str, f_desc);
-		fd_putc('\n', f_desc);
+		fd_puts(clot->str, recfile_description);
+		fd_putc('\n', recfile_description);
 	}
-	fd_putc(BUF_FLUSH, f_desc);
-	close(f_desc);
+	fd_putc(BUF_FLUSH, recfile_description);
+	close(recfile_description);
 	return (1);
 }
 
 
 /**
- * build_history - adds to the history linked list
- * @cmd_dat: Structure arguments
- * @buf: buffer
- * @line_count: the history count
- * Return: returns (0)
+ * build_history - this function adds to the history linked list
+ * @command_dat: this is the Structure(system) arguments
+ * @buffon: this is the buffer
+ * @count_line: this variable is the history count
+ * Return: should return (0)
  */
 
-int build_history(cmd_d *cmd_dat, char *buf, int line_count)
+int build_history(cmd_d *command_dat, char *buffon, int count_line)
 {
-	list_s *n = NULL;
+	list_s *m = NULL;
 
-	if (cmd_dat->history)
-		n = cmd_dat->history;
-	add_to_list(&n, buf, line_count);
+	if (command_dat->history)
+		m = command_dat->history;
+	add_to_list(&m, buffon, count_line);
 
-	if (!cmd_dat->history)
-		cmd_dat->history = n;
+	if (!command_dat->history)
+		command_dat->history = m;
 	return (0);
 }
 
 /**
- * number_history - numbers the history list after update
- * @cmd_dat: Structure arguments
- * Return: returns the new history count
+ * number_history - this function numbers the history list after d update
+ * @command_dat:this variable is the Structure(system) arguments
+ * Return: this should return the new history counts
  */
 
-int number_history(cmd_d *cmd_dat)
+int number_history(cmd_d *command_dat)
 {
-	list_s *nd = cmd_dat->history;
-	int x = 0;
+	list_s *currentclot = command_dat->history;
+	int y = 0;
 
-	while (nd)
+	while (currentclot)
 	{
-		nd->num = x++;
-		nd = nd->next;
+		currentclot->num = y++;
+		currentclot = currentclot->next;
 	}
-	return (cmd_dat->histcount = x);
+	return (command_dat->histcount = y);
 }

@@ -2,21 +2,21 @@
 
 
 /**
- * node_index - gets the index of a node
- * @h: pointer to node list
- * @n: pointer to the node
- * Return: returns the index of node or -1
+ * node_index - this gets the whole index of a node
+ * @i: this is the pointer to the node list(s)
+ * @m: this is the pointer to node
+ * Return: should return the index of the node or -1
  */
-ssize_t node_index(list_s *h, list_s *n)
+ssize_t node_index(list_s *i, list_s *m)
 {
-	size_t s = 0;
+	size_t t = 0;
 
-	while (h)
+	while (i)
 	{
-		if (h == n)
-			return (s);
-		h = h->next;
-		s++;
+		if (i == m)
+			return (t);
+		i = i->next;
+		t++;
 	}
 	return (-1);
 }

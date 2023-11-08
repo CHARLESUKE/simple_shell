@@ -2,46 +2,46 @@
 
 
 /**
- * prints_element - prints all elements of a linked list
- * @h: pointer to head node
- * Return: returns the size of list
+ * prints_element - this should print all available elements of a linked list
+ * @i: this is a pointer to head(first) node
+ * Return: it should return the size of lists
  */
 
-size_t prints_element(const list_s *h)
+size_t prints_element(const list_s *i)
 {
-	size_t s = 0;
+	size_t t = 0;
 
-	while (h)
+	while (i)
 	{
-		append_S(convert_num(h->num, 10, 0));
+		append_S(convert_num(i->num, 10, 0));
 		_putchar(':');
 		_putchar(' ');
-		append_S(h->str ? h->str : "(nil)");
+		append_S(i->str ? i->str : "(nil)");
 		append_S("\n");
-		h = h->next;
-		s++;
+		i = i->next;
+		t++;
 	}
-	return (s);
+	return (t);
 }
 
 /**
- * start_node - identifies the string with prefix
- * @node: pointer to head node
- * @prefix: string to match
- * @c: the next character after prefix to match
- * Return: returns either a match or nothing
+ * start_node - this should identifiey the string with the prefix
+ * @clot: this is thee pointer to head(biginning) node
+ * @theprefix: this is the string to match
+ * @e: this is the next role after theprefix to match
+ * Return: should returns either of a match or absolutely nothing
  */
 
-list_s *start_node(list_s *node, char *prefix, char c)
+list_s *start_node(list_s *clot, char *theprefix, char e)
 {
-	char *ptr = NULL;
+	char *prompt = NULL;
 
-	while (node)
+	while (clot)
 	{
-		ptr = _check(node->str, prefix);
-		if (ptr && ((c == -1) || (*ptr == c)))
-			return (node);
-		node = node->next;
+		prompt = _check(clot->str, theprefix);
+		if (prompt && ((e == -1) || (*prompt == e)))
+			return (clot);
+		clot = clot->next;
 	}
 	return (NULL);
 }

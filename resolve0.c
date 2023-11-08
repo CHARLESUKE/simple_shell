@@ -1,21 +1,22 @@
 #include "main.h"
 
 /**
- * if_exec_cmd - checks or determine if a
- * file at a given path is an executable command
- * @cmd_dat: the command data struct
- * @path: path to the file
- * Return: (1) if true, (0) if false
+ * if_exec_cmd - this function scan or decide if a
+ * file at the handed path is executable command
+ * @command_dat: this variable is the the command data
+ * structure
+ * @pathway: this variable is the path to the file
+ * Return:should return (1) if its true, (0) if false if not
  */
-int if_exec_cmd(cmd_d *cmd_dat, char *path)
+int if_exec_cmd(cmd_d *command_dat, char *pathway)
 {
-	struct stat st;
+	struct stat sti;
 
-	(void)cmd_dat;
-	if (!path || stat(path, &st))
+	(void)command_dat;
+	if (!pathway || stat(pathway, &sti))
 		return (0);
 
-	if (st.st_mode & S_IFREG)
+	if (sti.st_mode & S_IFREG)
 	{
 		return (1);
 	}
@@ -23,23 +24,23 @@ int if_exec_cmd(cmd_d *cmd_dat, char *path)
 }
 
 /**
- * char_dup - duplicates characters
- * @path_str: the PATH string
- * @start_c: starting character index
- * @stop_c: stopping charcter index
- * Return: returns pointer to new buffer
+ * char_dup - this functions work photocopies characters
+ * @pathstring: this variable is the PATH to string
+ * @begin_index:this variable begins character index
+ * @halt_index: this variable halts charcter index
+ * Return: should return pointer to the new buff
  */
 
-char *char_dup(char *path_str, int start_c, int stop_c)
+char *char_dup(char *pathstring, int begin_index, int halt_index)
 {
-	static char buff[1024];
-	int i = 0;
-	int a = 0;
+	static char buffer[1024];
+	int j = 0;
+	int b = 0;
 
-	for (a = 0, i = start_c; i < stop_c; i++)
-		if (path_str[i] != ':')
-			buff[a++] = path_str[i];
-	buff[a] = 0;
-	return (buff);
+	for (b = 0, j = begin_index; j < halt_index; j++)
+		if (pathstring[j] != ':')
+			buffer[b++] = pathstring[j];
+	buffer[b] = 0;
+	return (buffer);
 }
 

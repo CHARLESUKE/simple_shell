@@ -1,34 +1,34 @@
 #include "main.h"
 
 /**
- * memory_set - fills the memory set with byte
- * @p : pointer to memory
- * @b : bytes
- * @s : number of byes to be filled
- * Return: (p) the pointer to memory
+ * memory_set -  this function fills the memory set with the byte(s)
+ * @q :this variabale is the  pointer to memory
+ * @c : this variable is the bytes
+ * @t : this variable is the number of the byte(s) to be filled
+ * Return: should return(q)the pointer to the memory
  */
 
-char *memory_set(char *p, char b, unsigned int s)
+char *memory_set(char *q, char c, unsigned int t)
 {
-	unsigned int a;
+	unsigned int b;
 
-	for (a = 0; a < s; a++)
-		p[a] = b;
-	return (p);
+	for (b = 0; b < t; b++)
+		q[b] = c;
+	return (q);
 }
 
 /**
-* str_free - frees an array of strings
-* @p: address to string
+* str_free - this function work frees an array of the strings
+* @q: this variable is the address to the string
 */
 
-void str_free(char **p)
+void str_free(char **q)
 {
-	char **adr = p;
+	char **bfj = q;
 
-	if (!p)
+	if (!q)
 		return;
-	while (*p)
-		free(*p++);
-	free(adr);
+	while (*q)
+		free(*q++);
+	free(bfj);
 }
