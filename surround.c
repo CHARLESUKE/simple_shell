@@ -1,92 +1,96 @@
 #include "main.h"
 
 /**
- * _get_env - gets the value of an environment variables
- * @cmd_dat: Structure  arguments
- * @name: environment variable name
- * Return: the value of environment
+ * _get_env - this functions job is to get the
+ * value of an environment variables type
+ * @command_dat: this variables is the Structure  argument type
+ * @title: this variables function is the environment
+ * variable name type
+ * Return: should return the value of the environment
  */
 
-char *_get_env(cmd_d *cmd_dat, const char *name)
+char *_get_env(cmd_d *command_dat, const char *title)
 {
-	list_s *n = cmd_dat->env;
-	char *a;
+	list_s *m = command_dat->env;
+	char *b;
 
-	while (n)
+	while (m)
 	{
-		a = _check(n->str, name);
-		if (a && *a)
-			return (a);
-		n = n->next;
+		b = _check(m->str, title);
+		if (b && *b)
+			return (b);
+		m = m->next;
 	}
 	return (NULL);
 }
 
 /**
- * my_env - prints the current environment
- * @cmd_dat: Structure type
- * Return: returns(0)
+ * my_env -this function job prints the current environment type
+ * @command_dat: this variable is the Structure type
+ * Return: should returns(0)
  */
 
-int my_env(cmd_d *cmd_dat)
+int my_env(cmd_d *command_dat)
 {
-	print_list_string(cmd_dat->env);
+	print_list_string(command_dat->env);
 	return (0);
 }
 
 /**
- * set_environ - Initialize a new environment variable,
- * and modify an existing one
- * @cmd_dat: Structure type.
- *  Return: returns (0)
+ * set_environ - this functions job is to Initialize(sets) new env
+ * ironment variable,and also improve an already existing one
+ * @command_dat: this variable is the Structure type.
+ *  Return: shoud always returns (0)
  */
 
-int set_environ(cmd_d *cmd_dat)
+int set_environ(cmd_d *command_dat)
 {
-	if (cmd_dat->argc != 3)
+	if (command_dat->argc != 3)
 	{
-		append_err_s("Arguments are not complete\n");
+		append_err_s("Arguments incomplete\n");
 		return (1);
 	}
-	if (set_env(cmd_dat, cmd_dat->argv[1], cmd_dat->argv[2]))
+	if (set_env(command_dat, command_dat->argv[1], command_dat->argv[2]))
 		return (0);
 	return (1);
 }
 
 /**
- * unset_environ - deletes an environment variable
- * @cmd_dat: Structure arguments
- * Return: return (0)
+ * unset_environ - this functions job is to totally deletes an
+ * environment variable
+ * @command_dat: this varaible is the Structure argument type
+ * Return: this should return (0) always
  */
 
-int unset_environ(cmd_d *cmd_dat)
+int unset_environ(cmd_d *command_dat)
 {
-	int a;
+	int b;
 
-	if (cmd_dat->argc == 1)
+	if (command_dat->argc == 1)
 	{
-		append_err_s("Arguements are too few.\n");
+		append_err_s("Arguements just too few.\n");
 		return (1);
 	}
-	for (a = 1; a <= cmd_dat->argc; a++)
-		unset_env(cmd_dat, cmd_dat->argv[a]);
+	for (b = 1; b <= command_dat->argc; b++)
+		unset_env(command_dat, command_dat->argv[b]);
 
 	return (0);
 }
 
 /**
- * populate_env - populates environment linked list
- * @cmd_dat: Structure type
- * Return: returns environment list
+ * populate_env - this functions job is to populate
+ * environment linked list
+ * @command_dat: this variable is the Struct type
+ * Return: should always return the environment list
  */
 
-int populate_env(cmd_d *cmd_dat)
+int populate_env(cmd_d *command_dat)
 {
-	list_s *node = NULL;
-	size_t a;
+	list_s *clot = NULL;
+	size_t b;
 
-	for (a = 0; environ[a]; a++)
-		add_node(&node, environ[a], 0);
-	cmd_dat->env = node;
+	for (b = 0; environ[b]; b++)
+		add_node(&clot, environ[b], 0);
+	command_dat->env = clot;
 	return (0);
 }

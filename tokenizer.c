@@ -1,52 +1,53 @@
 #include "main.h"
 
 /**
- * **token - splits a string into words and repeated
- * delimeter are ignored
- * @str: string input
- * @delim: delimeter
- * Return: returns the address to a string array
+ * **token - this functions job is to split a string
+ * into words and also repeated along delimeter are ignored
+ * @stringfield: this variable is the string input type
+ * @delimta: this variable is the delimeter tye
+ * Return: should always return the address to a
+ * string array as follows
  */
 
-char **token(char *str, char *delim)
+char **token(char *stringfield, char *delimta)
 {
-	int a, b, i, j;
-	int word_num = 0;
-	char **s;
+	int b, c, j, k;
+	int wordstotal = 0;
+	char **t;
 
-	if (str == NULL || str[0] == 0)
+	if (stringfield == NULL || stringfield[0] == 0)
 		return (NULL);
-	if (!delim)
-		delim = " ";
-	for (a = 0; str[a] != '\0'; a++)
-		if (!is_delimeter(str[a], delim) && (is_delimeter(str[a + 1], delim)
-					|| !str[a + 1]))
-			word_num++;
+	if (!delimta)
+		delimta = " ";
+	for (b = 0; stringfield[b] != '\0'; b++)
+		if (!is_delimeter(stringfield[b], delimta) && (is_delimeter(stringfield[b + 1], delimta)
+					|| !stringfield[b + 1]))
+			wordstotal++;
 
-	if (word_num == 0)
+	if (wordstotal == 0)
 		return (NULL);
-	s = malloc((1 + word_num) * sizeof(char *));
-	if (!s)
+	t = malloc((1 + wordstotal) * sizeof(char *));
+	if (!t)
 		return (NULL);
-	for (a = 0, b = 0; b < word_num; b++)
+	for (b = 0, c = 0; c < wordstotal; c++)
 	{
-		while (is_delimeter(str[a], delim))
-			a++;
-		i = 0;
-		while (!is_delimeter(str[a + i], delim) && str[a + i])
-			i++;
-		s[b] = malloc((i + 1) * sizeof(char));
-		if (!s[b])
+		while (is_delimeter(stringfield[b], delimta))
+			b++;
+		j = 0;
+		while (!is_delimeter(stringfield[b + j], delimta) && stringfield[b + j])
+			j++;
+		t[c] = malloc((j + 1) * sizeof(char));
+		if (!t[c])
 		{
-			for (i = 0; i < b; i++)
-				free(s[i]);
-			free(s);
+			for (j = 0; j < c; j++)
+				free(t[j]);
+			free(t);
 			return (NULL);
 		}
-		for (j = 0; j < i; j++)
-			s[b][j] = str[a++];
-		s[b][j] = 0;
+		for (k = 0; k < j; k++)
+			t[c][k] = stringfield[b++];
+		t[c][k] = 0;
 	}
-	s[b] = NULL;
-	return (s);
+	t[c] = NULL;
+	return (t);
 }

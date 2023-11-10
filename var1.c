@@ -2,70 +2,73 @@
 
 
 /**
- * replace_alias - replaces an aliases in the token strings
- * @cmd_dat: the struct type
- * Return: returns (1) if alias is replaced, and (0) if not
+ * replace_alias - this function is a replacement for an aliases
+ * in the token strings
+ * @command_dat: this variable is the structure type
+ * Return: should always return (1) if alias is fully replaced,
+ * and (0) if notreplaced
  */
 
-int replace_alias(cmd_d *cmd_dat)
+int replace_alias(cmd_d *command_dat)
 {
-	int i;
-	list_s *node;
-	char *c;
+	int j;
+	list_s *clot;
+	char *e;
 
-	for (i = 0; i < 10; i++)
+	for (j = 0; j < 10; j++)
 	{
-		node = start_node(cmd_dat->alias, cmd_dat->argv[0], '=');
-		if (!node)
+		clot = start_node(command_dat->alias, command_dat->argv[0], '=');
+		if (!clot)
 			return (0);
-		free(cmd_dat->argv[0]);
-		c = string_char(node->str, '=');
-		if (!c)
+		free(command_dat->argv[0]);
+		e = string_char(clot->str, '=');
+		if (!e)
 			return (0);
-		c = str_duplicate(c + 1);
-		if (!c)
+		e = str_duplicate(e + 1);
+		if (!e)
 			return (0);
-		cmd_dat->argv[0] = c;
+		command_dat->argv[0] = e;
 	}
 	return (1);
 }
 
 /**
- * var_replace - replaces variables
- * @cmd_dat: struct parameter
- * Return: returns (1) if replaced and (0) if not
+ * var_replace - this functions job is to replace variables
+ * @command_dat: this variable is the structure parameter type
+ * Return: should always return (1) if replaced
+ * and (0) if not replaced
  */
 
-int var_replace(cmd_d *cmd_dat)
+int var_replace(cmd_d *command_dat)
 {
-	int a = 0;
-	list_s *node;
+	int b = 0;
+	list_s *clot;
 
-	for (a = 0; cmd_dat->argv[a]; a++)
+	for (b = 0; command_dat->argv[b]; b++)
 	{
-		if (cmd_dat->argv[a][0] != '$' || !cmd_dat->argv[a][1])
+		if (command_dat->argv[b][0] != '$' || !command_dat->argv[b][1])
 			continue;
 
-		if (!my_str_comp(cmd_dat->argv[a], "$?"))
+		if (!my_str_comp(command_dat->argv[b], "$?"))
 		{
-			replace_str(&(cmd_dat->argv[a]),
-					str_duplicate(convert_num(cmd_dat->status, 10, 0)));
+			replace_str(&(command_dat->argv[b]),
+					str_duplicate(convert_num(command_dat->status, 10, 0)));
 			continue;
 		}
-		if (!my_str_comp(cmd_dat->argv[a], "$$"))
+		if (!my_str_comp(command_dat->argv[b], "$$"))
 		{
-			replace_str(&(cmd_dat->argv[a]),
+			replace_str(&(command_dat->argv[b]),
 					str_duplicate(convert_num(getpid(), 10, 0)));
 			continue;
 		}
-		node = start_node(cmd_dat->env, &cmd_dat->argv[a][1], '=');
-		if (node)
+		clot = start_node(command_dat->env, &command_dat->argv[b][1], '=');
+		if (clot)
 		{
-			replace_str(&(cmd_dat->argv[a]),
-					str_duplicate(string_char(node->str, '=') + 1));
+			replace_str(&(command_dat->argv[b]),
+					str_duplicate(string_char(clot->str, '=') + 1));
 			continue;
 		}
-		replace_str(&cmd_dat->argv[a], str_duplicate(""));
+		replace_str(&command_dat->argv[b], str_duplicate(""));
 
 	}
 	return (0);
