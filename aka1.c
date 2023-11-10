@@ -2,9 +2,10 @@
 
 
 /**
- * print_a - performance to imprints an alias string
- * @_clot: alias node
- * Return: returns (0) if success and (1) if failure
+ * print_a - this functions job is the performance to imprints
+ * an alias string
+ * @_clot: this variable is the alias node type
+ * Return: should return (0) if success and (1) if at failure
  */
 int print_a(list_s *_clot)
 {
@@ -25,19 +26,20 @@ int print_a(list_s *_clot)
 }
 
 /**
- * cmd_alias - impersonate the alias order
- * @cmd_dat: construction type
- *  Return: return (0)
+ * cmd_alias - this functions job is to impersonate
+ * the alias order
+ * @command_dat: this variable is the construction type
+ *  Return: should always return (0)
  */
-int cmd_alias(cmd_d *cmd_dat)
+int cmd_alias(cmd_d *command_dat)
 {
 	int b = 0;
 	char *prompt = NULL;
 	list_s *clot = NULL;
 
-	if (cmd_dat->argc == 1)
+	if (command_dat->argc == 1)
 	{
-		clot = cmd_dat->alias;
+		clot = command_dat->alias;
 		while (clot)
 		{
 			print_a(clot);
@@ -45,13 +47,13 @@ int cmd_alias(cmd_d *cmd_dat)
 		}
 		return (0);
 	}
-	for (b = 1; cmd_dat->argv[b]; b++)
+	for (b = 1; command_dat->argv[b]; b++)
 	{
-		prompt = string_char(cmd_dat->argv[b], '=');
+		prompt = string_char(command_dat->argv[b], '=');
 		if (prompt)
-			alias_set(cmd_dat, cmd_dat->argv[b]);
+			alias_set(command_dat, command_dat->argv[b]);
 		else
-			print_a(start_node(cmd_dat->alias, cmd_dat->argv[b], '='));
+			print_a(start_node(command_dat->alias, command_dat->argv[b], '='));
 	}
 
 	return (0);

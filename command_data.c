@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * set_cmd - start order to structure
- * @command_dat: formation type
- * @avv: argument vector
+ * set_cmd - this functions job is to start order to structure
+ * @command_dat: this variables job is the formation type
+ * @avv: this variable job is the argument vector
  */
 
 void set_cmd(cmd_d *command_dat, char **avv)
@@ -33,8 +33,8 @@ void set_cmd(cmd_d *command_dat, char **avv)
 }
 
 /**
- * clear_cmd - start order structure
- * @command_dat: form type
+ * clear_cmd - this functions job is to start order struct
+ * @command_dat: this variable is the form type
  */
 
 void clear_cmd(cmd_d *command_dat)
@@ -43,34 +43,4 @@ void clear_cmd(cmd_d *command_dat)
 	command_dat->argv = NULL;
 	command_dat->path = NULL;
 	command_dat->argc = 0;
-}
-
-/**
- * free_cmd - Release order
- * @command_dat: form type
- * @u: returns (empty) and true if deed is successful
- */
-
-void free_cmd(cmd_d *command_dat, int u)
-{
-	str_free(command_dat->argv);
-	command_dat->argv = NULL;
-	command_dat->path = NULL;
-	if (u)
-	{
-		if (!command_dat->cmd_buf)
-			free(command_dat->arg);
-		if (command_dat->env)
-			free_list(&(command_dat->env));
-		if (command_dat->history)
-			free_list(&(command_dat->history));
-		if (command_dat->alias)
-			free_list(&(command_dat->alias));
-		str_free(command_dat->environ);
-			command_dat->environ = NULL;
-		_free_ptr((void **)command_dat->cmd_buf);
-		if (command_dat->readfd > 2)
-			close(command_dat->readfd);
-		_putchar(BUF_FLUSH);
-	}
 }
