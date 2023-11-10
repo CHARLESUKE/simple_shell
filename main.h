@@ -217,7 +217,7 @@ char **get_env(cmd_d *);
 int set_env(cmd_d *, char *, char *); /* still confusing */
 int unset_env(cmd_d *, char *);
 
-/* environment functions */
+/* surround functions */
 char *_get_env(cmd_d *, const char *);
 int my_env(cmd_d *);
 int set_environ(cmd_d *);
@@ -232,7 +232,7 @@ int build_history(cmd_d *, char *buffon, int line_count);
 int number_history(cmd_d *);
 
 
-/* getline functions (getline functions) */
+/* getline_ functions (the getline functions) */
 int my_getline(cmd_d *, char **, size_t *);
 ssize_t input_buffer(cmd_d *, char **buffon, size_t *);
 ssize_t read_buf(cmd_d *, char *buffon, size_t *);
@@ -257,7 +257,7 @@ list_s *start_node(list_s *, char *, char e);
 ssize_t node_index(list_s *, list_s *);
 
 /* variables functions */
-int is_Chain(cmd_d *, char *buff, size_t *ptr);
+int is_Chain(cmd_d *, char *buffer, size_t *prompt);
 void chain_check(cmd_d *, char *, size_t *, size_t, size_t);
 int replace_alias(cmd_d *);
 int var_replace(cmd_d *);
