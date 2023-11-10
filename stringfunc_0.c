@@ -1,35 +1,37 @@
 #include "main.h"
 
 /**
- * string_length - function to return the length of a string
- * @str: the string whose length would be checked
- * Return: the lenght of string input
+ * string_length - this functions job is to return length of a string
+ * @stringfield: this variables job is the string whose length
+ * should be checked
+ * type
+ * Return: should returnthe lenght of string input
  */
-size_t string_length(char *str)
+size_t string_length(char *stringfield)
 {
-	int len = 0;
+	int lengthstr = 0;
 
-	while (str[len] != '\0')
+	while (stringfield[lengthstr] != '\0')
 	{
-		len++;
+		lengthstr++;
 	}
-	return (len);
+	return (lengthstr);
 }
 
 /**
- * str_concat - concatenates two string input
- * @adr: the address of buffer destination
- * @ssrc: the sourse of the buffer
- * Return: returns the address to destination buffer
+ * str_concat - this functions job is to concatenates two string input
+ * @bfj: this variable is the address of buffer destination type
+ * @buffsource: this variable is the sourse of the buffer type
+ * Return: should return the address to the destination buffer
  */
-char *str_concat(char *adr, char *ssrc)
+char *str_concat(char *bfj, char *buffsource)
 {
-	char *des = adr;
+	char *destination = bfj;
 
-	while (*adr)
-		adr++;
-	while (*ssrc)
-		*adr++ = *ssrc++;
-	*adr = *ssrc;
-	return (des);
+	while (*bfj)
+		bfj++;
+	while (*buffsource)
+		*bfj++ = *buffsource++;
+	*bfj = *buffsource;
+	return (destination);
 }

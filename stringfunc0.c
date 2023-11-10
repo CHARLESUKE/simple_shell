@@ -2,41 +2,42 @@
 
 
 /**
- * _putchar - writes the character c to standard outpt
- * @c: The character to print
- * Return: Successful (0)
- * On error, -1 is returned, and errno is set appropriately
+ * _putchar - this functions job writes the character e to the standard output
+ * @e: this variable is The character to print
+ * Return: should return Successful (0) always
+ * but On error, -1 should be or is returned,
+ * and errno shoulb be or is set appropriately
  */
-int _putchar(char c)
+int _putchar(char e)
 {
-	static int i;
-	static char buf[WRITE_BUF_SIZE];
+	static int j;
+	static char buffon[WRITE_BUF_SIZE];
 
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	if (e == BUF_FLUSH || j >= WRITE_BUF_SIZE)
 	{
-		write(1, buf, i);
-		i = 0;
+		write(1, buffon, j);
+		j = 0;
 	}
-	if (c != BUF_FLUSH)
-		buf[i++] = c;
+	if (e != BUF_FLUSH)
+		buffon[j++] = e;
 	return (1);
 }
 
 
 
 /**
- * append_S - prints a string
- * @str: pointer to string
+ * append_S - this function job is to prints a string
+ * @stringfield: this variable job is to a pointer to string
  */
-void append_S(char *str)
+void append_S(char *stringfield)
 {
-	int i = 0;
+	int j = 0;
 
-	if (!str)
+	if (!stringfield)
 		return;
-	while (str[i] != '\0')
+	while (stringfield[j] != '\0')
 	{
-		_putchar(str[i]);
-		i++;
+		_putchar(stringfield[j]);
+		j++;
 	}
 }

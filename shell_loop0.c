@@ -1,61 +1,62 @@
 #include "main.h"
 
 /**
- * shell - main shell loop
- * @cmd_dat: parameter
- * @av: argument vector
- * Return: returns (0) if successful, and (1) if there's an error
- * or an error message
+ * shell - this function is the main shell(s) loop
+ * @command_dat: this variable is the parameter
+ * @avv: this variable is the argument(s) vector
+ * Return: this should return (0) if very successful, and
+ * (1) if there is an error or error messages
  */
 
-int shell(cmd_d *cmd_dat, char **av)
+int shell(cmd_d *command_dat, char **avv)
 {
-	ssize_t a = 0;
-	int _built = 0;
+	ssize_t b = 0;
+	int builtcmdstu = 0;
 
-	while (a != -1 && _built != -2)
+	while (b != -1 && builtcmdstu != -2)
 	{
-		clear_cmd(cmd_dat);
-		if (interactive_shell(cmd_dat))
+		clear_cmd(command_dat);
+		if (interactive_shell(command_dat))
 			append_S("$ ");
 		err_putchar(BUF_FLUSH);
-		a = _input(cmd_dat);
-		if (a != -1)
+		b = _input(command_dat);
+		if (b != -1)
 		{
-			set_cmd(cmd_dat, av);
-			_built = find_builtIn(cmd_dat);
-			if (_built == -1)
-				path_cmd(cmd_dat);
+			set_cmd(command_dat, avv);
+			builtcmdstu = find_builtIn(command_dat);
+			if (builtcmdstu == -1)
+				path_cmd(command_dat);
 		}
-		else if (interactive_shell(cmd_dat))
+		else if (interactive_shell(command_dat))
 			_putchar('\n');
-		free_cmd(cmd_dat, 0);
+		free_cmd(command_dat, 0);
 	}
-	write_history(cmd_dat);
-	free_cmd(cmd_dat, 1);
-	if (!interactive_shell(cmd_dat) && cmd_dat->status)
-		exit(cmd_dat->status);
-	if (_built == -2)
+	write_history(command_dat);
+	free_cmd(command_dat, 1);
+	if (!interactive_shell(command_dat) && command_dat->status)
+		exit(command_dat->status);
+	if (builtcmdstu == -2)
 	{
-		if (cmd_dat->err_num == -1)
-			exit(cmd_dat->status);
-		exit(cmd_dat->err_num);
+		if (command_dat->err_num == -1)
+			exit(command_dat->status);
+		exit(command_dat->err_num);
 	}
-	return (_built);
+	return (builtcmdstu);
 }
 
 /**
- * find_builtIn - checks for built in command
- * @cmd_dat: parameter
- * Return: returns (-1) if builtin command not found, (0) if builtin
+ * find_builtIn - this function jobs checks for the built in commands
+ * @command_dat: this variable is the parameter
+ * Return: should return (-1) if the builtin command not found, and
+ * (0) if the builtin
  * command is executed successfully
- * and (1) if found but not executed successfully
+ * and then (1) if its found but not executed successfully
  */
-int find_builtIn(cmd_d *cmd_dat)
+int find_builtIn(cmd_d *command_dat)
 {
-	int a, ret_builtin = -1;
-	builtin_list bl[] = {
-		{"exit",exit_cmd},
+	int b, retcmdbui = -1;
+	builtin_list blcmd[] = {
+		{"exit", exit_cmd},
 		{"env", my_env},
 		{"help", help_cmd},
 		{"history", history_cmd},
@@ -66,12 +67,12 @@ int find_builtIn(cmd_d *cmd_dat)
 		{NULL, NULL}
 	};
 
-	for (a = 0; bl[a].type; a++)
-		if (my_str_comp(cmd_dat->argv[0], bl[a].type) == 0)
+	for (b = 0; blcmd[b].type; b++)
+		if (my_str_comp(command_dat->argv[0], blcmd[b].type) == 0)
 		{
-			cmd_dat->line_count++;
-			ret_builtin = bl[a].func(cmd_dat);
+			command_dat->line_count++;
+			retcmdbui = blcmd[b].func(command_dat);
 			break;
 		}
-	return (ret_builtin);
+	return (retcmdbui);
 }

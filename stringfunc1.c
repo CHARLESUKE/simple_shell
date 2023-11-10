@@ -2,44 +2,45 @@
 
 
 /**
- * *my_str_copy - copies a string
- * @str: first string input
- * @src: second string input
- * Return: returns the result of the comparison
+ * *my_str_copy - this function jobs is to copy a string
+ * @source: this variable is the second string input type
+ * @destination: this is a variable dstination
+ * Return:t this should return the result of the comparison
  */
-char *my_str_copy(char *dest, char *src)
+char *my_str_copy(char *destination, char *source)
 {
-	int s = 0;
+	int t = 0;
 
-	if (dest == src || src == 0)
-		return (dest);
-	while (src[s])
+	if (destination == source || source == 0)
+		return (destination);
+	while (source[t])
 	{
-		dest[s] = src[s];
-		s++;
+		destination[t] = source[t];
+		t++;
 	}
-	dest[s] = 0;
-	return (dest);
+	destination[t] = 0;
+	return (destination);
 }
 
 /**
- * str_duplicate - duplicates a string input or output
- * @str: the string input
- * Return: returns the address to the string duplicated
+ * str_duplicate - this finctions job duplicates
+ * the/a string input or output
+ * @stringfield: this variable is the string input type
+ * Return:should return the address to string duplicated
  */
-char *str_duplicate(const char *str)
+char *str_duplicate(const char *stringfield)
 {
-	char *dup;
-	int len = 0;
+	char *duplicatestr;
+	int lengthstr = 0;
 
-	if (str == NULL)
+	if (stringfield == NULL)
 		return (NULL);
-	while (*str++)
-		len++;
-	dup = malloc(sizeof(char) * (len + 1));
-	if (!dup)
+	while (*stringfield++)
+		lengthstr++;
+	duplicatestr = malloc(sizeof(char) * (lengthstr + 1));
+	if (!duplicatestr)
 		return (NULL);
-	for (len++; len--;)
-		dup[len] = *--str;
-	return (dup);
+	for (lengthstr++; lengthstr--;)
+		duplicatestr[lengthstr] = *--stringfield;
+	return (duplicatestr);
 }

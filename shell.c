@@ -1,45 +1,45 @@
 #include "main.h"
 
 /**
- * main - entry point for simple shell
- * @ac: argument count
- * @av: argument vector
- * Return: returns (0) if successful, and (1) if there
- * is an error
+ * main - this function job is the entry point for the simple shell
+ * @argu_count: this variable is the argument count
+ * @avv: this variable is the argument vector
+ * Return: should return (0) if very successful, and (1) if there
+ * are errors
  */
 
-int main(int ac, char **av)
+int main(int argu_count, char **avv)
 {
-	cmd_d cmddat[] = { CMDDATA_INIT };
-	int file_desc = 2;
+	cmd_d cmddatarray[] = { CMDDATA_INIT };
+	int filedescriptor = 2;
 
 	asm ("mov %1, %0\n\t"
 			"add $3, %0"
-			: "=r" (file_desc)
-			: "r" (file_desc));
+			: "=r" (filedescriptor)
+			: "r" (filedescriptor));
 
-	if (ac == 2)
+	if (argu_count == 2)
 	{
-		file_desc = open(av[1], O_RDONLY);
-		if (file_desc == -1)
+		filedescriptor = open(avv[1], O_RDONLY);
+		if (filedescriptor == -1)
 		{
 			if (errno == EACCES)
 				exit(126);
 			if (errno == ENOENT)
 			{
-				append_err_s(av[0]);
+				append_err_s(avv[0]);
 				append_err_s(": 0: Can't open ");
-				append_err_s(av[1]);
+				append_err_s(avv[1]);
 				err_putchar('\n');
 				err_putchar(BUF_FLUSH);
 				exit(127);
 			}
 			return (EXIT_FAILURE);
 		}
-		cmddat->readfd = file_desc;
+		cmddatarray->readfd = filedescriptor;
 	}
-	populate_env(cmddat);
-	rd_history(cmddat);
-	shell(cmddat, av);
+	populate_env(cmddatarray);
+	rd_history(cmddatarray);
+	shell(cmddatarray, avv);
 	return (EXIT_SUCCESS);
 }

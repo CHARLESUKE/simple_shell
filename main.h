@@ -137,16 +137,16 @@ typedef struct builtin
 } builtin_list;
 
 
-/* string function(s) */
+/* stringfunction(s) */
 int _putchar(char);
-void append_S(char *str); /*appends strings from character*/
-size_t string_length(char *str);
+void append_S(char *stringfield); /*appends strings from character*/
+size_t string_length(char *stringfield);
 int my_str_comp(const char *, const char *);
-int replace_str(char **o, char *n);
+int replace_str(char **p, char *m);
 char *str_concat(char *adr, char *ssrc);
-char *my_str_copy(char *str, char *src);
-char *str_duplicate(const char *str);
-char *_check(const char *haystack, const char *needle);
+char *my_str_copy(char *stringfield, char *source);
+char *str_duplicate(const char *stringfield);
+char *_check(const char *strsearch, const char *substrfin);
 
 
 /*fork function(s)*/
@@ -157,7 +157,7 @@ int shell(cmd_d *, char **);
 int find_builtIn(cmd_d *);
 void path_cmd(cmd_d *);
 
-/* parse functions */
+/* resolve functions */
 int if_exec_cmd(cmd_d *, char *);
 char *char_dup(char *, int, int);
 char *find_full_path(cmd_d *, char *, char *);

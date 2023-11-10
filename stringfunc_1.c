@@ -3,24 +3,25 @@
 
 
 /**
- * my_str_comp - compares two string input
- * @s1: the first string input
- * @s2: the second string input
- * Return: negative if s1 < s2, positive if s1 > s2,
- * (0) if s1 s2 are the same
+ * my_str_comp - this function job is to compare two string input
+ * @firststring: this variables is the first string input type
+ * @secondstring: this variable is the second string input type
+ * Return: should negative if string1 < string2, positive
+ * if string1 > string2,
+ * (0) if string1 and string2 are the same
  */
-int my_str_comp(const char *s1, const char *s2)
+int my_str_comp(const char *firststring, const char *secondstring)
 {
-	while (*s1 && *s2)
+	while (*firststring && *secondstring)
 	{
-		if (*s1 != *s2)
-			return (*s1 - *s2);
-		s1++;
-		s2++;
+		if (*firststring != *secondstring)
+			return (*firststring - *secondstring);
+		firststring++;
+		secondstring++;
 	}
-	if (*s1 == *s2)
+	if (*firststring == *secondstring)
 		return (0);
-	else if (*s1 < *s2)
+	else if (*firststring < *secondstring)
 	{
 		return (-1);
 	}
@@ -32,15 +33,15 @@ int my_str_comp(const char *s1, const char *s2)
 
 
 /**
- * _check - checks if needle starts with haystack
- * @haystack: string input to search
- * @needle: substring to find
- * Return: returns NULL or pointer of the next character of haystack
+ * _check - this function checks if substrfin starts with strsearch
+ * @strsearch: this variable is the string input to search type
+ * @substrfin: this variable is the substring to find type
+ * Return: should return NULL or a pointer of the next character of strsearch
  */
-char *_check(const char *haystack, const char *needle)
+char *_check(const char *strsearch, const char *substrfin)
 {
-	while (*needle)
-		if (*needle++ != *haystack++)
+	while (*substrfin)
+		if (*substrfin++ != *strsearch++)
 			return (NULL);
-	return ((char *)haystack);
+	return ((char *)strsearch);
 }
