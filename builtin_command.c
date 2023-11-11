@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * exit_cmd - exit order for shell
- * @cmd_dat: construction
- * Return: (1) ext, returns (0) if cmd_dat.argv[0] != "exit".
+ * exit_cmd -  this functions is the exit order for shell
+ * @command_dat: this variable is the construction type
+ * Return: (1) ext, should return (0) if cmd_dat.argv[0] != "exit".
  */
 int exit_cmd(cmd_d *command_dat)
 {
@@ -28,9 +28,10 @@ int exit_cmd(cmd_d *command_dat)
 }
 
 /**
- * help_cmd - gives you details on changed directories
- * @cmd_dat: structiure holding disoute
- * Return: returns (0)
+ * help_cmd - this functions job is to gives you details 
+ * on changed directories
+ * @command_dat: this variable is the structiure holding disoute
+ * Return: should always return (0)
  */
 
 int help_cmd(cmd_d *command_dat)

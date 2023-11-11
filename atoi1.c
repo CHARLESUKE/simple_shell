@@ -2,9 +2,9 @@
 
 
 /**
- * alpha_is - examine for alphabetum
- * @e: the intake character
- * Return: returns (1) if true and (0) if false
+ * alpha_is - this functions job is to examine for alphabetum
+ * @e: this variables job is the intake character
+ * Return: should return (1) if its true and (0) if its false
  */
 
 int alpha_is(int e)
@@ -17,10 +17,11 @@ int alpha_is(int e)
 
 
 /**
- * is_delimeter - checks if character is a delimeter
- * @e: character to examine
- * @f: the delimeter
- * Return: returns (1) if there is a delimeter, (0) if false
+ * is_delimeter - this functions job is to checks if character 
+ * is a delimeter
+ * @e: this variables job is the character to examine type
+ * @f: this variable is the delimeter type
+ * Return: should return (1) if there is a delimeter, (0) if false
  */
 int is_delimeter(char e, char *f)
 {

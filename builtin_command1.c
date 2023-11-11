@@ -2,18 +2,19 @@
 
 
 /**
- * cd_cmd - swaps directories
- * @cmd_dat: construction containing potential arguments
- * Return: returns (0)
+ * cd_cmd - this jobs fuctions job is to swap directories
+ * @command_dat: this variable is the  construction 
+ * containing potential arguments
+ * Return: should always return (0)
  */
 
 int cd_cmd(cmd_d *command_dat)
 {
-	char *e, *f; /* f stands for directory */
-	char buff[1024];
+	char *e, *f; /* the f stands for directory */
+	char buffer[1024];
 	int chndir;
 
-	e = getcwd(buff, 1024);
+	e = getcwd(buffer, 1024);
 	if (!e)
 		append_S("TODO: >>getcwd failed emsg spot<<\n");
 	if (!command_dat->argv[1])
@@ -45,15 +46,15 @@ int cd_cmd(cmd_d *command_dat)
 	else
 	{
 		set_env(command_dat, "OLDPWD", _get_env(command_dat, "PWD="));
-		set_env(command_dat, "PWD", getcwd(buff, 1024));
+		set_env(command_dat, "PWD", getcwd(buffer, 1024));
 	}
 	return (0);
 }
 
 /**
- * history_cmd - lists the recorded list
- * @cmd_dat: system
- *  Return: returns (0)
+ * history_cmd - this functions job is to list the recorded list
+ * @command_dat: this variable is the system type
+ *  Return: should always return (0)
  */
 int history_cmd(cmd_d *command_dat)
 {
