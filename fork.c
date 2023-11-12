@@ -1,9 +1,10 @@
 #include "main.h"
 
 /**
- * fork_c - fork is an exec to run orders
- * @command_dat: is the parameter
- * Return: nothing (void)
+ * fork_c - this functiom is the fork is an exec to run
+ * orders type
+ * @command_dat: this is a variable to the parameter
+ * Return: should always return absolutely nothing (void)
  */
 void fork_c(cmd_d *command_dat)
 {
