@@ -2,7 +2,7 @@
 
 
 /**
- * set_env - this functions job is to start a 
+ * set_env - this functions job is to start a
  * new domain variable,and change an existing one
  * @command_dat: this variable is the System type
  * @variab: this variable is the string domain variable
@@ -23,7 +23,7 @@ int set_env(cmd_d *command_dat, char *variab, char *w)
 		return (1);
 	if (strchr(variab, ' ') != NULL)
 	{
-		free (buffer);
+		free(buffer);
 		return (1);
 	}
 	my_str_copy(buffer, variab);

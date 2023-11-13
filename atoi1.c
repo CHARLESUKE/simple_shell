@@ -17,7 +17,7 @@ int alpha_is(int e)
 
 
 /**
- * is_delimeter - this functions job is to checks if character 
+ * is_delimeter - this functions job is to checks if character
  * is a delimeter
  * @e: this variables job is the character to examine type
  * @f: this variable is the delimeter type

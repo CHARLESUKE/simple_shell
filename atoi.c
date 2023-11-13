@@ -1,7 +1,7 @@
 /**
- * atoi - this functions job is to change the starting part 
+ * atoi - this functions job is to change the starting part
  * of the string aimed to a integer
- * @stringfield: this variables job is the string 
+ * @stringfield: this variables job is the string
  * impending changed
  * Return: shuld return (0) if the nueral in string or a set of
  * changed numeral

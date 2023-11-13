@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * shell - this function is the main shell(s) loop
+ * shell - this functions job is the main shell(s) loop
  * @command_dat: this variable is the parameter
  * @avv: this variable is the argument(s) vector
  * Return: this should return (0) if very successful, and

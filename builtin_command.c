@@ -28,7 +28,7 @@ int exit_cmd(cmd_d *command_dat)
 }
 
 /**
- * help_cmd - this functions job is to gives you details 
+ * help_cmd - this functions job is to gives you details
  * on changed directories
  * @command_dat: this variable is the structiure holding disoute
  * Return: should always return (0)

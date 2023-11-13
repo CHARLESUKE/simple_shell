@@ -2,9 +2,9 @@
 
 
 /**
- * free_list - this function works to free the list
- * @highpointer: this variab job is the pointer to address of head node
- * Return: should returns nothing (void)
+ * free_list - this function job works to free the list
+ * @highpointer: this variab jobs is the pointer to address of head node
+ * Return: should always return nothing (void)
  */
 
 void free_list(list_s **highpointer)

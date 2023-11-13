@@ -2,9 +2,9 @@
 
 
 /**
- * _input - recieves a line minus the newline
- * @command_dat: anatomy type
- * Return: the number of bytes studied
+ * _input - this function job is to recieve a line minus the newline
+ * @command_dat: this variable is the anatomy type
+ * Return: should always return the number of bytes studied
  */
 
 ssize_t _input(cmd_d *command_dat)
@@ -48,10 +48,10 @@ ssize_t _input(cmd_d *command_dat)
 }
 
 /**
- * read_buf - this reads (the)an input buffer
- * @command_dat: anatomy type
- * @buffon: buffer
- * @t: thats the total size of buffer
+ * read_buf - this function reads (the)an input buffer
+ * @command_dat: this variable is the anatomy type
+ * @buffon: this variable is the buffer
+ * @t: this variable is the total size of buffer
  * Return: (j)
  */
 ssize_t read_buf(cmd_d *command_dat, char *buffon, size_t *t)

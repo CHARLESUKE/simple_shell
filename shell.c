@@ -28,7 +28,7 @@ int main(int argu_count, char **avv)
 			if (errno == ENOENT)
 			{
 				append_err_s(avv[0]);
-				append_err_s(": 0: Can't open ");
+				append_err_s(": 0: access denied ");
 				append_err_s(avv[1]);
 				err_putchar('\n');
 				err_putchar(BUF_FLUSH);

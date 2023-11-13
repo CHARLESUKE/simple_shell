@@ -1,11 +1,12 @@
 #include "main.h"
 
 /**
- * add_node - it adds a node at the beginning of the linked list
- * @i: pointer to the head node
- * @stringfield: the string field of the node
- * @non: node index that is used by history(record)
- * Return: should return the size of linked list
+ * add_node - this function job is to adds a node at the
+ * beginning of the linked list
+ * @i: this variable is the pointer to the head node
+ * @stringfield: this variable is the string field of the node
+ * @non: this variable is the node index that is used by history(record)
+ * Return: this should always return the size of linked list
  */
 
 list_s *add_node(list_s **i, const char *stringfield, int non)
@@ -34,11 +35,11 @@ list_s *add_node(list_s **i, const char *stringfield, int non)
 }
 
 /**
- * add_to_list - this adds a node to the list
- * @i: this is the pointer to the head node
- * @stringfield: this is the string field of node
- * @non: this is the node index used by history
- * Return: should returns the size of list
+ * add_to_list - this function job is to adds a node to the list
+ * @i: this variable is the pointer to the head node
+ * @stringfield: this variable is the string field of node
+ * @non: this variable is the node index used by history
+ * Return: should always return the size of list
  */
 
 list_s *add_to_list(list_s **i, const char *stringfield, int non)

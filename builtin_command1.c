@@ -3,7 +3,7 @@
 
 /**
  * cd_cmd - this jobs fuctions job is to swap directories
- * @command_dat: this variable is the  construction 
+ * @command_dat: this variable is the  construction
  * containing potential arguments
  * Return: should always return (0)
  */

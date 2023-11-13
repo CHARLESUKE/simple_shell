@@ -2,9 +2,10 @@
 
 
 /**
- * print_list_string - this function emprints only string element of the list
- * @prompt : this variab pointer to first node
- * Return: should returns size of linked list
+ * print_list_string - this function job is to emprints only
+ * string element of the list
+ * @prompt : this variab is a pointer to first node
+ * Return: should always return size of linked list
  */
 
 size_t print_list_string(const list_s *prompt)
@@ -22,10 +23,10 @@ size_t print_list_string(const list_s *prompt)
 }
 
 /**
- * delete_node - this function deletes node at an index
- * @i: this variab address of pointer to first node
- * @j: this variab is index of node to delete
- * Return: should return (1) if deleted and (0) if not deleted
+ * delete_node - this function job is to delete node at an index
+ * @i: this variab is the address of pointer to first node
+ * @j: this variab is the index of node to delete
+ * Return: should always return (1) if deleted and (0) if not deleted
  */
 
 int delete_node(list_s **i, unsigned int j)

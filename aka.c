@@ -1,9 +1,11 @@
 #include "main.h"
 
+void bet(void);
+
 /**
  * alias_set - this functions job is to put alias to
  * take string input
- * @comamnd_dat: cthis variables job is the onstruction type
+ * @command_dat: cthis variables job is the onstruction type
  * @stringfield: this variable is the string alias type
  * Return: should always return (0) if success and (1) if
  * there is a failure
