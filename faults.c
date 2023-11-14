@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * append_err_s - this function is the engrave an input string
+ * append_err_s - this functions job is to engrave an input string
  * @t: this variable is the mistake string to be engraved
  * Return: should always return nothing (void)
  */
@@ -19,7 +19,7 @@ void append_err_s(char *t)
 }
 
 /**
- * err_putchar - notes s function is the character e to stderr type
+ * err_putchar - this functions job is the character e to stderr type
  * @e: this variable is the character to engrave type
  * Return: should always return If successful (1) while if an error happens
  * (-1) is returned, and errno is set properly

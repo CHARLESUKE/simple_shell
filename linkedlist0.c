@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
- * list_length - this decides the length of the linked list
- * @prompt: this is pointer to the actual first node
+ * list_length - this function decides the length of the linked list
+ * @prompt: this variable is pointer to the actual first node
  * Return: should return the size of the linked list
  */
 size_t list_length(const list_s *prompt)
@@ -18,9 +18,9 @@ size_t list_length(const list_s *prompt)
 }
 
 /**
- * list_to_str - the array of the strings is brought back
- * @i: the pointer to the head(beginning) node
- * Return: should return an array of the strings
+ * list_to_str - this function is the array of the strings is brought back
+ * @i: this variable is the pointer to the head(beginning) node
+ * Return: should always return an array of the strings
  */
 
 char **list_to_str(list_s *i)

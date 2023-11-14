@@ -13,37 +13,6 @@
 #include <fcntl.h>
 #include <errno.h>
 
-/**
-*typedef void(*sighandler_t)(int)
-*sighandler_t signal(int signum, sighandler_t handler);
-*int close(int fd);
-*int access(const char *pathname, int mode);
-*int chdir(const char *path);
-*int clisedir(DIR *dirp);
-*int execve(cont char *pathname, char *const argv[], char *const envp[]);
-*void exit(int status);
-*void _exit(int status);
-*int fflush(FILE *stream);
-*pid_t fork(void);
-*void free(void *ptr);
-*char *getcwd(char *buf, size_t size);
-*ssize_t getline(char **lineptr, size_t *n, FILE *stream);
-*pid_t getpid(void);
-*int isatty(int fd);
-*int kill(pid_t pid, int sig);
-*int open(const char *pathname, int flags, mode_t mode);
-*DIR *opendir(const char *name);
-*void perror(const char *s);
-*ssize_t read(int fd, void *buff size_t count);
-*struct dirent *readdir(DIR *dirp);
-*ssize_t write(int fd,  const void *buf, size_t count);
-*pid_t wait3(int wstatus, int option, struct rusage *rusage);
-*pid_t wait4(pid_t pid, int *wstatus, int option, struct rusage *rusage);
-*pid_t wait(int *wstatus);
-*pid_t waitpid(pid_t pid, int *wstatus, int option);
-*char *strtok(char *str, const char *delim);
-*int stat(const char *pathname, struct stat *statbuf);
-*/
 
 #define CMD_NORM	0
 #define CMD_OR		1
@@ -66,10 +35,10 @@
 extern char **environ;
 
 /**
- * struct liststring - singly linked list
- * @num: the number field
- * @str: a string
- * @nxt: points to the next node
+ * struct liststring - this function is the singly linked list
+ * @num: this function is the the number field
+ * @str: this function is the a string
+ * @nxt: this function is the points to the next node
  */
 typedef struct list_str
 {
@@ -78,25 +47,25 @@ typedef struct list_str
 	struct list_str *next;
 } list_s;
 /**
- * struct cmd_dat - linked list created
- * @arg: pointer to strings with arguments
- * @argv: pointer to an array of strings
- * @path: string path
- * @argc: argument count (command-line arguments)
- * @line_count: characters count in a string
- * @err_num: error code
- * @linecount_flag: flag to count line of string inputs
- * @fname: pointer to program file
- * @readfd: file descriptor used for reading inputs
- * @env: linked list of environ variables
- * @environ: array of environ variables
- * @env_changed: checks for if environment has changed
- * @history: pointer to past entry
- * @histcount: memory for prev command entered
- * @status: result from prev command
- * @alias: command aliases
- * @cmd_buf: pointer address to command buffer
- * @cmd_buf_type: command buffer (CMD_type: || 0r &&, )
+ * struct cmd_dat - this function is the linked list created
+ * @arg: this function is the pointer to strings with arguments
+ * @argv: this function is the pointer to an array of strings
+ * @path: this function is the string path
+ * @argc: this fumction is the argument count (command-line arguments)
+ * @line_count: this function is the characters count in a string
+ * @err_num: this function is the error code
+ * @linecount_flag: this function is the flag to count line of string inputs
+ * @fname: this function is the pointer to program file
+ * @readfd: this function is the file descriptor used for reading inputs
+ * @env: this function is the linked list of environ variables
+ * @environ: this function is the array of environ variables
+ * @env_changed: this function is the checks for if environment has changed
+ * @history: this function is the pointer to past entry
+ * @histcount: this function is the memory for prev command entered
+ * @status: this function is the result from prev command
+ * @alias: this function is the command aliases
+ * @cmd_buf: this function is the pointer address to command buffer
+ * @cmd_buf_type: this function is the command buffer (CMD_type: || 0r &&, )
  */
 typedef struct cmddata
 {
@@ -116,7 +85,7 @@ typedef struct cmddata
 	int status;
 
 	char **cmd_buf;
-	int cmd_buf_type; /* accepts ||, &&, ; */
+	int cmd_buf_type; /* accepts and allows all ||, &&, ; */
 	int readfd;
 	int histcount;
 } cmd_d;
@@ -126,9 +95,9 @@ typedef struct cmddata
 		0, 0, 0}
 
 /**
- * struct builtin - builtin string function
- * @type: builtin command flag
- * @func: function
+ * struct builtin - this function is builtin string 
+ * @type: this variable is the builtin command flag
+ * @func: this is the function
  */
 typedef struct builtin
 {
@@ -139,7 +108,7 @@ typedef struct builtin
 
 /* stringfunction(s) */
 int _putchar(char);
-void append_S(char *stringfield); /*appends strings from character*/
+void append_S(char *stringfield); /*conjoin strings from the personality*/
 size_t string_length(char *stringfield);
 int my_str_comp(const char *, const char *);
 int replace_str(char **p, char *m);
@@ -177,7 +146,7 @@ void rm_comments(char *buffer);
 
 /* exit functions */
 char *string_char(char *prompt, char t);
-char *string_copy(char *destination, char *source, int m); /*Still working on it*/
+char *string_copy(char *destination, char *source, int m); /*Still in progress*/
 char *string_concat(char *destination, char *source, int m);
 
 /* free function(s) */
