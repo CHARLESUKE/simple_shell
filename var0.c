@@ -38,35 +38,35 @@ int is_Chain(cmd_d *command_dat, char *buffer, size_t *prompt)
 
 /**
  * chain_check - this functions job is to check for continues chainings
- * @command_dat: this variable is the struct type
+ * @comdat: this variable is the struct type
  * @buffer: this variable is the char buffer type
- * @bfj: this variable is the current position for address in buffer type
+ * @bj: this variable is the current position for address in buffer type
  * @t: this variable is the starting position type
- * @lengthstr: this variable is the buffer's length type
+ * @lst: this variable is the buffer's length type
  * Return: should always return absolutely nothing (void)
  */
 
-void chain_check(cmd_d *command_dat, char *buffer, size_t *bfj, size_t t, size_t lengthstr)
+void chain_check(cmd_d *comdat, char *buffer, size_t *bj, size_t t, size_t lst)
 {
-	size_t q = *bfj;
+	size_t q = *bj;
 
-	if (command_dat->cmd_buf_type == CMD_AND)
+	if (comdat->cmd_buf_type == CMD_AND)
 	{
-		if (command_dat->status)
+		if (comdat->status)
 		{
 			buffer[t] = 0;
-			q = lengthstr;
+			q = lst;
 		}
 	}
-	if (command_dat->cmd_buf_type == CMD_OR)
+	if (comdat->cmd_buf_type == CMD_OR)
 	{
-		if (!command_dat->status)
+		if (!comdat->status)
 		{
 			buffer[t] = 0;
-			q = lengthstr;
+			q = lst;
 		}
 	}
 
-	*bfj = q;
+	*bj = q;
 }
 

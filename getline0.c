@@ -2,7 +2,7 @@
 
 /**
  *my_getline - this function reads the whole line
- from stream from STDIN, Another alternative to(geline) function
+ *from stream from STDIN, Another alternative to(geline) function
  * @command_dat: this variable is the structure parameter type
  * @prompt: this variable is the address to the a pointer to a
  * buffer type

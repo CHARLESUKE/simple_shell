@@ -27,11 +27,11 @@ int alias_set(cmd_d *command_dat, char *stringfield)
 
 /**
  * alias_unset - this functions job is to delete alisas order
- * @command_dat: this variables job is construction type
+ * @comdat: this variables job is construction type
  * @stringfield: this variable is the string aka type
  * Return: should return (0) if success and (1) if failure
  */
-int alias_unset(cmd_d *command_dat, char *stringfield)
+int alias_unset(cmd_d *comdat, char *stringfield)
 {
 	char *prompt;
 	char b;
@@ -42,8 +42,8 @@ int alias_unset(cmd_d *command_dat, char *stringfield)
 		return (1);
 	b = *prompt;
 	*prompt = 0;
-	rest = delete_node(&(command_dat->alias),
-		node_index(command_dat->alias, start_node(command_dat->alias, stringfield, -1)));
+	rest = delete_node(&(comdat->alias),
+		node_index(comdat->alias, start_node(comdat->alias, stringfield, -1)));
 	*prompt = b;
 	return (rest);
 }

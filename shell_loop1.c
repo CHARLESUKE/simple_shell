@@ -2,42 +2,42 @@
 
 /**
  * path_cmd - this function jobs checks for a command in the PATH
- * @command_dat: this variable is the parameter & returnstructure
+ * @comdat: this variable is the parameter & returnstructure
  *
  * Return: should return void
  */
-void path_cmd(cmd_d *command_dat)
+void path_cmd(cmd_d *comdat)
 {
 	char *cmdpath = NULL;
 	int j, k;
 
-	command_dat->path = command_dat->argv[0];
-	if (command_dat->linecount_flag == 1)
+	comdat->path = comdat->argv[0];
+	if (comdat->linecount_flag == 1)
 	{
-		command_dat->line_count++;
-		command_dat->linecount_flag = 0;
+		comdat->line_count++;
+		comdat->linecount_flag = 0;
 	}
-	for (j = 0, k = 0; command_dat->arg[j]; j++)
-		if (!is_delimeter(command_dat->arg[j], " \t\n"))
+	for (j = 0, k = 0; comdat->arg[j]; j++)
+		if (!is_delimeter(comdat->arg[j], " \t\n"))
 			k++;
 	if (!k)
 		return;
 
-	cmdpath = find_full_path(command_dat, _get_env(command_dat, "PATH="), command_dat->argv[0]);
+	cmdpath = find_full_path(comdat, _get_env(comdat, "PATH="), comdat->argv[0]);
 	if (cmdpath)
 	{
-		command_dat->path = cmdpath;
-		fork_c(command_dat);
+		comdat->path = cmdpath;
+		fork_c(comdat);
 	}
 	else
 	{
-		if ((interactive_shell(command_dat) || _get_env(command_dat, "PATH=")
-					|| command_dat->argv[0][0] == '/') && if_exec_cmd(command_dat, command_dat->argv[0]))
-			fork_c(command_dat);
-		else if (*(command_dat->arg) != '\n')
+		if ((interactive_shell(comdat) || _get_env(comdat, "PATH=")
+					|| comdat->argv[0][0] == '/') && if_exec_cmd(comdat, comdat->argv[0]))
+			fork_c(comdat);
+		else if (*(comdat->arg) != '\n')
 		{
-			command_dat->status = 127;
-			print_err(command_dat, "No type of file\n");
+			comdat->status = 127;
+			print_err(comdat, "No type of file\n");
 		}
 	}
 }

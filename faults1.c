@@ -5,7 +5,8 @@
  * fd_putc - this function is to note the character to the specified file
  * @e: this variable is the engraved character type
  * @file_d: this variables is the filedescriptor to note down to
- * Return: should always return If successful (1), if an error occurs (-1) is returned,
+ * Return: should always return If successful (1), if an error o
+ * ccurs (-1) is returned,
  * and errno is set accordinly
  */
 
